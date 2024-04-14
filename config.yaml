@@ -4,7 +4,7 @@ bluetooth_manager:
   logging:
     level: "INFO"  # Logging level
     format: "%(asctime)s - %(levelname)s - %(message)s"  # Logging format
-    file: "/var/log/bluetooth_manager.log"  # File where logs are written
+    file: "logs/bluetooth_manager.log"  # File where logs are written; adjusted for non-root environments
   retry:
     enable: true  # Enable retry mechanism
     max_attempts: 3  # Maximum number of retry attempts
