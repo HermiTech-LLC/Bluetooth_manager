@@ -11,21 +11,9 @@ The package abstracts the complexity of direct `bluetoothctl` interactions and
 provides an easy-to-use interface that can be integrated into larger applications
 that require Bluetooth capability.
 
-Main Components
----------------
+Main Components:
 - `BluetoothManager`: A class to handle scanning, connecting, and managing Bluetooth devices.
 - `BluetoothManagerError`: Custom exception class for handling Bluetooth-related errors.
-
-Example Usage
--------------
-from Bluetooth_manager import BluetoothManager
-
-manager = BluetoothManager()
-devices = manager.discover_devices()
-for device in devices:
-    manager.connect_device(device)
-
-Please ensure that `bluetoothctl` is installed and properly configured on your system.
 """
 
 __version__ = '0.1.0'
