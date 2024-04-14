@@ -4,13 +4,19 @@ import time
 import threading
 import logging
 import re
-from queue import Queue, Empty
+from pathlib import Path
 
+# Load configuration from YAML file
 def load_config():
-    with open('config.yaml', 'r') as file:
-        return yaml.safe_load(file)
+    try:
+        with open('config.yaml', 'r') as file:
+            return yaml.safe_load(file)['bluetooth_manager']
+    except FileNotFoundError:
+        raise FileNotFoundError("Configuration file not found.")
+    except yaml.YAMLError as e:
+        raise RuntimeError("Error parsing the configuration file: " + str(e))
 
-config = load_config()['bluetooth_manager']
+config = load_config()
 
 class BluetoothManagerError(Exception):
     """Custom exception for BluetoothManager errors."""
@@ -33,8 +39,10 @@ class BluetoothManager:
         self.setup_logging()
 
     def setup_logging(self):
+        log_path = Path(config['logging']['file'])
+        log_path.parent.mkdir(exist_ok=True)  # Ensure log directory exists
         logging.basicConfig(
-            filename=config['logging']['file'],
+            filename=str(log_path),
             level=getattr(logging, config['logging']['level']),
             format=config['logging']['format']
         )
