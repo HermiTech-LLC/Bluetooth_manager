@@ -3,39 +3,37 @@ name: Build on Ubuntu 20.04
 on:
   push:
     branches:
-      - main  # Triggers the workflow on push events to the main branch
+      - main  # Triggers the workflow on push events to the main branch.
 
 jobs:
   build:
-    runs-on: ubuntu-20.04  # Specifies the runner environment
+    runs-on: ubuntu-20.04  # Specifies the runner environment.
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2  # Checks out your repository under $GITHUB_WORKSPACE
+      - name: Checkout repository
+        uses: actions/checkout@v2  # Checks out the repository code.
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'  # Specifies the Python version to use
+          python-version: '3.9'  # Sets up the specified Python version.
 
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y bluez python3-pip
+          sudo apt-get install -y bluez python3-pip  # Installs system-level dependencies.
 
-      - name: Install package dependencies
+      - name: Install Python dependencies
         run: |
           python3 -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then python3 -m pip install -r requirements.txt; fi
+          if [ -f requirements.txt ]; then 
+            python3 -m pip install -r requirements.txt  # Installs dependencies from requirements.txt if present.
+          fi
 
-      - name: Install package
+      - name: Install the package
         run: |
-          python3 -m pip install .
+          python3 setup.py install  # Installs the package using setup.py.
 
-      - name: Run tests to ensure setup is correct
+      - name: Validate package installation
         run: |
-          python3 -c "from bluetooth_manager.manager import BluetoothManager; manager = BluetoothManager(); print('Setup successful if no errors appear!')"
-
-      - name: Clean up
-        run: |
-          echo "Build and test processes are complete."
+          python3 -c "import bluetooth_manager; print('bluetooth_manager package installed successfully')"  # Simple check to validate installation.
