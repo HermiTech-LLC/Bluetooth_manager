@@ -28,30 +28,31 @@ class BluetoothManager:
         self.connection_semaphore = threading.Semaphore(self.max_connections)  # Limits the number of concurrent connections
 
     def run_bluetoothctl_command(self, command, wait_time=1, expect_response=None):
-        """Execute a command in the bluetoothctl environment and handle its output."""
-        process = subprocess.Popen([self.bluetoothctl_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        try:
-            process.stdin.write(f"{command}\n")
-            process.stdin.flush()
-            if wait_time:
-                time.sleep(wait_time)
-            process.stdin.write("exit\n")
-            process.stdin.flush()
-            output, errors = process.communicate(timeout=10)
-            if errors:
-                logging.error(f"Error: {errors}")
-            if expect_response and expect_response not in output:
-                logging.warning(f"Expected '{expect_response}' not found in the output.")
-            return output
-        except subprocess.TimeoutExpired:
-            logging.error("Command timeout. Bluetooth operation did not respond in time.")
-            process.kill()
-            output, errors = process.communicate()
-        except Exception as e:
-            logging.error(f"An error occurred: {e}")
-            raise BluetoothManagerError(f"An error occurred: {e}")
-        finally:
-            process.terminate()
+    """Execute a command in the bluetoothctl environment and handle its output."""
+    process = subprocess.Popen([self.bluetoothctl_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    try:
+        process.stdin.write(f"{command}\n")
+        process.stdin.flush()
+        if wait_time:
+            time.sleep(wait_time)
+        process.stdin.write("exit\n")
+        process.stdin.flush()
+        output, errors = process.communicate(timeout=10)
+        if errors:
+            logging.error(f"Error: {errors}")
+        if expect_response and expect_response not in output:
+            logging.warning(f"Expected '{expect_response}' not found in the output.")
+        return output or ""
+    except subprocess.TimeoutExpired:
+        logging.error("Command timeout. Bluetooth operation did not respond in time.")
+        process.kill()
+        output, _ = process.communicate()
+        return output or ""
+    except Exception as e:
+        logging.error(f"An error occurred: {e}")
+        raise BluetoothManagerError(f"An error occurred: {e}")
+    finally:
+        process.terminate()
 
     def discover_devices(self):
         """Scan for available Bluetooth devices and return a list of device MAC addresses."""
