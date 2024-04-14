@@ -44,4 +44,7 @@ jobs:
 
       - name: Publish the package to GitHub Packages
         run: |
-          twine upload --repository-url https://nuget.pkg.github.com/LoQiseaking69/ dist/* -u __token__ -p ${{ github.token }}
+          twine upload --repository-url https://pypi.pkg.github.com/LoQiseaking69/ dist/* -u __token__ -p ${{ github.token }}
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ github.token }}
