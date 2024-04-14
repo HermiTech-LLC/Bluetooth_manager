@@ -3,7 +3,7 @@ name: Build on Ubuntu 20.04
 on:
   push:
     branches:
-      - main  # Triggers the workflow on pushes to the main branch
+      - main  # Triggers the workflow on push events to the main branch
 
 jobs:
   build:
@@ -16,33 +16,29 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'  # Ensures compatibility with the specified Python version
+          python-version: '3.9'  # Specifies the Python version to use
 
       - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y bluez python3-pip
 
-      - name: Set up virtual environment
+      - name: Install package dependencies
         run: |
-          python -m venv venv
-          source venv/bin/activate
-
-      - name: Install package
-        run: |
-          pip install --upgrade pip
-          pip install .
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi  # Install dependencies if requirements.txt exists
 
       - name: Run tests to ensure setup is correct
         run: |
+          source venv/bin/activate  # Activates the virtual environment
           python -c "from bluetooth_manager.manager import BluetoothManager; manager = BluetoothManager(); print('Setup successful if no errors appear!')"
-        
+
       - name: Execute Build.sh script
         run: |
-          chmod +x Build.sh  # Makes sure the script is executable
-          ./Build.sh  # Executes your build script
+          chmod +x Build.sh  # Makes the script executable
+          ./Build.sh  # Executes the build script
 
       - name: Clean up
         run: |
-          deactivate
-          echo "Deployment complete. The bluetooth_manager is ready to use."
+          deactivate  # Deactivates the virtual environment
+          echo "Build and test processes are complete."
