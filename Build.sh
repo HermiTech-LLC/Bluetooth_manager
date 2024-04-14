@@ -13,9 +13,16 @@ exec_cmd() {
     eval "$@"
 }
 
+# Helper function to check command existence
+command_exists() {
+    command -v "$1" &>/dev/null
+}
+
+echo "Starting deployment of bluetooth_manager package..."
+
 # Check and install Python 3.6 or higher
 echo "Checking for Python 3.6+ installation..."
-if ! python3 --version &>/dev/null || [[ $(python3 -c 'import sys; print(sys.version_info >= (3, 6))') != "True" ]]; then
+if ! command_exists python3 || [[ $(python3 -c 'import sys; print(sys.version_info >= (3, 6))') != "True" ]]; then
     echo "Python 3.6+ is not installed. Installing Python..."
     exec_cmd "sudo apt-get update"
     exec_cmd "sudo apt-get install -y python3 python3-pip"
@@ -25,7 +32,7 @@ fi
 
 # Ensure bluetoothctl is installed
 echo "Checking for bluetoothctl..."
-if ! command -v bluetoothctl &>/dev/null; then
+if ! command_exists bluetoothctl; then
     echo "bluetoothctl not found. Installing bluetooth packages..."
     exec_cmd "sudo apt-get install -y bluez"
 else
@@ -36,6 +43,8 @@ fi
 echo "Setting up virtual environment for package installation..."
 if [ ! -d "venv" ]; then
     exec_cmd "python3 -m venv venv"
+else
+    echo "Virtual environment already exists."
 fi
 source venv/bin/activate
 
