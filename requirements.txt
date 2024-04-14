@@ -1,8 +1,2 @@
 wheel
 PyYAML
-wxPython
-pyaudio
-numpy
-pybluez  # If using Bluetooth in Python, check compatibility
-setuptools
-twine
