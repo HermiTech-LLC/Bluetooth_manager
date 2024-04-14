@@ -4,15 +4,16 @@ import time
 import threading
 import logging
 import re
+import os
 from pathlib import Path
 
-# Load configuration from YAML file
 def load_config():
     try:
-        with open('config.yaml', 'r') as file:
+        config_path = os.getenv('BLUETOOTH_MANAGER_CONFIG', 'config.yaml')
+        with open(config_path, 'r') as file:
             return yaml.safe_load(file)['bluetooth_manager']
     except FileNotFoundError:
-        raise FileNotFoundError("Configuration file not found.")
+        raise FileNotFoundError("Configuration file not found at {}".format(config_path))
     except yaml.YAMLError as e:
         raise RuntimeError("Error parsing the configuration file: " + str(e))
 
@@ -40,7 +41,7 @@ class BluetoothManager:
 
     def setup_logging(self):
         log_path = Path(config['logging']['file'])
-        log_path.parent.mkdir(exist_ok=True)  # Ensure log directory exists
+        os.makedirs(log_path.parent, exist_ok=True)  # Ensure log directory exists
         logging.basicConfig(
             filename=str(log_path),
             level=getattr(logging, config['logging']['level']),
@@ -50,12 +51,14 @@ class BluetoothManager:
     def run_bluetoothctl_command(self, command, wait_time=None):
         """Execute a command in the bluetoothctl environment and handle its output."""
         wait_time = wait_time or config['scan']['timeout_seconds']
+        env = os.environ.copy()  # Use the system's environment variables
         process = subprocess.Popen(
             [self.bluetoothctl_path],
             stdin=subprocess.PIPE, 
             stdout=subprocess.PIPE, 
             stderr=subprocess.PIPE, 
-            text=True
+            text=True,
+            env=env
         )
         try:
             process.stdin.write(f"{command}\n")
@@ -69,8 +72,8 @@ class BluetoothManager:
             return output
         except subprocess.TimeoutExpired:
             process.kill()
-            process.communicate()
-            raise BluetoothManagerError("Command timeout. Bluetooth operation did not respond in time.", command)
+            _, errors = process.communicate()
+            raise BluetoothManagerError("Command timeout. Bluetooth operation did not respond in time.", command, errors)
         finally:
             process.terminate()
 
@@ -99,7 +102,7 @@ class BluetoothManager:
         """Manage connections to discovered devices."""
         devices = self.discover_devices()
         threads = []
-        for device_mac in devices[:self.max_connections]:  # Limit the number of devices to manage based on the semaphore
+        for device_mac in devices[:self.max_connections]:
             thread = threading.Thread(target=self.connect_device, args=(device_mac,))
             threads.append(thread)
             thread.start()
