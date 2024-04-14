@@ -1,65 +1,64 @@
 # Bluetooth Manager Package
 
 ## Overview
-The `bluetooth_manager` package allows you to manage Bluetooth device connections programmatically on systems with `bluetoothctl` installed. This package is designed to handle multiple Bluetooth connections simultaneously and can be integrated into larger applications or used standalone for managing Bluetooth devices.
+The `bluetooth_manager` package enables programmatic management of Bluetooth device connections on systems equipped with `bluetoothctl`. Designed for versatility, it can be integrated into broader applications or utilized standalone to oversee Bluetooth devices efficiently. It handles multiple connections concurrently, ensuring smooth operations across various devices.
 
 ## Features
-- **Device Scanning**: Scan for all available Bluetooth devices nearby.
-- **Connection Management**: Connect to multiple devices concurrently, with a configurable limit on the number of simultaneous connections.
-- **Robust Error Handling**: Custom exceptions and detailed logging for tracking and debugging.
+- **Device Scanning**: Scans for all detectable Bluetooth devices within range.
+- **Connection Management**: Facilitates connections to multiple devices simultaneously, featuring a configurable limit on the number of concurrent connections to ensure system stability.
+- **Robust Error Handling**: Implements custom exceptions and provides comprehensive logging to facilitate effective tracking and troubleshooting.
 
 ## Installation
-To install the `bluetooth_manager`, navigate to the package directory and run the following command:
+To install the `bluetooth_manager`, navigate to the package directory and execute the following command in your terminal:
 
-```bash
+\```bash
 pip install .
-```
+\```
 
-This will install the package into your Python environment. Ensure that your Python version is 3.6 or higher due to syntax and library requirements.
+This command installs the package into your Python environment. Compatibility requires Python version 3.6 or higher due to specific syntax and library dependencies.
 
 ## Dependencies
 - Python 3.6 or higher
-- `subprocess`, `threading`, `logging`, `re` (regular expressions) â All from the Python standard library.
-- Ensure `bluetoothctl` is installed on your Linux system as this package interfaces directly with it.
+- Standard Python libraries: `subprocess`, `threading`, `logging`, `re` (regular expressions)
+- `bluetoothctl` must be installed on your Linux system as this package directly interfaces with it.
 
 ## Usage
-To use the `bluetooth_manager` in your Python scripts, follow these steps:
+Incorporate the `bluetooth_manager` into your Python scripts with these steps:
 
-1. **Import the BluetoothManager**:
-    ```python
+1. **Import BluetoothManager**:
+    \```python
     from bluetooth_manager.manager import BluetoothManager
-    ```
+    \```
 
-2. **Create an Instance**:
-    ```python
+2. **Instantiate the Manager**:
+    \```python
     bluetooth_manager = BluetoothManager()
-    ```
+    \```
 
-3. **Manage Connections**:
-    ```python
+3. **Execute Connection Management**:
+    \```python
     bluetooth_manager.manage_connections()
-    ```
+    \```
 
-This will start scanning for devices and attempt to connect to them based on the available slots for connections defined during the initialization of `BluetoothManager`.
+This initiates a device scanning process and manages connections based on the configured concurrent connection slots during the `BluetoothManager` initialization.
 
 ## Example
-Here's a simple example demonstrating how to start the manager and initiate connections:
+Below is a straightforward example to demonstrate how to initialize the manager and manage connections:
 
-```python
+\```python
 from bluetooth_manager.manager import BluetoothManager
 
-# Initialize the manager with a maximum of 4 concurrent connections
+# Initialize the manager allowing up to 4 concurrent connections
 bluetooth_manager = BluetoothManager(max_connections=4)
 
-# Start managing connections
+# Begin connection management
 bluetooth_manager.manage_connections()
-```
+\```
 
 ## Contributing
-Contributions to the `bluetooth_manager` package are welcome! Please ensure to follow standard coding practices, add comments where necessary, and maintain the structure and quality of the code.
-
+Contributions are encouraged and appreciated. Please adhere to standard coding practices, annotate code clearly where needed, and uphold the existing codebase structure and quality.
 
 ## Contact
-For direct inquiries, contact:
+For direct inquiries, please contact:
 - **Name**: Ant
 - **Email**: anthonygreene2007@gmail.com
