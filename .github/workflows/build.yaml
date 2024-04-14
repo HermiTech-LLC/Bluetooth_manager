@@ -27,7 +27,8 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           if [ -f requirements.txt ]; then
-            python3 -m pip install -r requirements.txt  # Installs Python dependencies specified in requirements.txt if it exists.
+            python3 -m pip install -r requirements.txt
+          fi
 
       - name: Install the package
         run: |
