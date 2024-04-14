@@ -1,8 +1,16 @@
+import yaml
 import subprocess
 import time
 import threading
 import logging
+import re  # Import re module to use regular expressions for device parsing
 from queue import Queue, Empty
+
+def load_config():
+    with open('config.yaml', 'r') as file:
+        return yaml.safe_load(file)
+
+config = load_config()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -16,8 +24,8 @@ class BluetoothManager:
     
     def __init__(self, max_connections=4):
         self.bluetoothctl_path = 'bluetoothctl'
-        self.max_connections = max_connections
-        self.connection_semaphore = threading.Semaphore(max_connections)  # Limits the number of concurrent connections
+        self.max_connections = max_connections if max_connections else config.get('max_connections', 4)
+        self.connection_semaphore = threading.Semaphore(self.max_connections)  # Limits the number of concurrent connections
 
     def run_bluetoothctl_command(self, command, wait_time=1, expect_response=None):
         """Execute a command in the bluetoothctl environment and handle its output."""
