@@ -11,23 +11,23 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2  # Checks out the repository code.
+        uses: actions/checkout@v2  # Checks out the repository code under $GITHUB_WORKSPACE.
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'  # Sets up the specified Python version.
+          python-version: '3.9'  # Specifies the Python version to use.
 
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y bluez python3-pip  # Installs system-level dependencies.
+          sudo apt-get install -y bluez python3-pip  # Installs bluez for Bluetooth control and pip for Python package installations.
 
       - name: Install Python dependencies
         run: |
           python3 -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then 
-            python3 -m pip install -r requirements.txt  # Installs dependencies from requirements.txt if present.
+          if [ -f requirements.txt ]; then
+            python3 -m pip install -r requirements.txt  # Installs Python dependencies specified in requirements.txt if it exists.
           fi
 
       - name: Install the package
@@ -36,4 +36,4 @@ jobs:
 
       - name: Validate package installation
         run: |
-          python3 -c "import bluetooth_manager; print('bluetooth_manager package installed successfully')"  # Simple check to validate installation.
+          python3 -c "import Bluetooth_manager; print('Bluetooth_manager package installed successfully')"  # Simple check to validate installation.
