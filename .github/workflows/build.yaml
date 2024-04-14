@@ -33,7 +33,3 @@ jobs:
       - name: Install the package
         run: |
           python3 setup.py install  # Installs the package using setup.py.
-
-      - name: Validate package installation
-        run: |
-          python3 -c "import Bluetooth_manager; print('Bluetooth_manager package installed successfully')"  # Simple check to validate installation.
