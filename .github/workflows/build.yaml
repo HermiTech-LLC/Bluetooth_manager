@@ -1,4 +1,4 @@
-name: Build and Publish on Ubuntu 20.04
+name: Build on Ubuntu 20.04
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main  # Triggers the workflow on push events to the main branch.
 
 jobs:
-  build-and-publish:
+  build:
     runs-on: ubuntu-20.04  # Specifies the runner environment.
 
     steps:
@@ -21,29 +21,13 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y bluez python3-pip  # Installs necessary system packages.
-
+          sudo apt-get install -y bluez python3-pip  # Installs bluez for Bluetooth control and pip for Python package installations.
       - name: Install Python dependencies
         run: |
           python3 -m pip install --upgrade pip
           if [ -f requirements.txt ]; then
             python3 -m pip install -r requirements.txt  # Installs Python dependencies specified in requirements.txt if it exists.
-
+          fi
       - name: Install the package
         run: |
           python3 setup.py install  # Installs the package using setup.py.
-
-      - name: Build the package
-        run: |
-          python3 setup.py sdist bdist_wheel  # Creates source distribution and wheel.
-
-      - name: Install twine
-        run: |
-          pip install twine  # Installs twine for uploading packages.
-
-      - name: Publish the package to GitHub Packages
-        run: |
-          twine upload --repository-url https://pypi.pkg.github.com/LoQiseaking69/ dist/* -u __token__ -p ${{ secrets.GITHUB_TOKEN }}
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
