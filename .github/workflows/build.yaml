@@ -27,8 +27,7 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           if [ -f requirements.txt ]; then
-            python3 -m pip install -r requirements.txt
-          fi
+            python3 -m pip install -r requirements.txt  # Installs Python dependencies specified in requirements.txt if it exists.
 
       - name: Install the package
         run: |
@@ -44,7 +43,7 @@ jobs:
 
       - name: Publish the package to GitHub Packages
         run: |
-          twine upload --repository-url https://pypi.pkg.github.com/LoQiseaking69/ dist/* -u __token__ -p ${{ github.token }}
+          twine upload --repository-url https://pypi.pkg.github.com/LoQiseaking69/ dist/* -u __token__ -p ${{ secrets.GITHUB_TOKEN }}
         env:
           TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ github.token }}
+          TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
