@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04  # Specifies the runner environment
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2  # Checks out your repository under $GITHUB_WORKSPACE
@@ -17,12 +18,31 @@ jobs:
         with:
           python-version: '3.9'  # Ensures compatibility with the specified Python version
 
-      - name: Install dependencies
+      - name: Install system dependencies
         run: |
-          python -m pip install --upgrade pip  # Updates pip
-          python setup.py install  # Installs your Python package and any dependencies
+          sudo apt-get update
+          sudo apt-get install -y bluez python3-pip
 
+      - name: Set up virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+
+      - name: Install package
+        run: |
+          pip install --upgrade pip
+          pip install .
+
+      - name: Run tests to ensure setup is correct
+        run: |
+          python -c "from bluetooth_manager.manager import BluetoothManager; manager = BluetoothManager(); print('Setup successful if no errors appear!')"
+        
       - name: Execute Build.sh script
         run: |
           chmod +x Build.sh  # Makes sure the script is executable
           ./Build.sh  # Executes your build script
+
+      - name: Clean up
+        run: |
+          deactivate
+          echo "Deployment complete. The bluetooth_manager is ready to use."
