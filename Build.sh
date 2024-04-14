@@ -2,7 +2,7 @@
 
 # This script deploys the bluetooth_manager package on a Raspberry Pi 4B.
 # It verifies and installs the necessary Python and bluetoothctl if missing,
-# then installs and tests the package for managing Bluetooth devices.
+# then installs and tests the package for managing Bluetooth devices within a virtual environment.
 
 # Exit if any command fails and enable verbose output for debugging
 set -eo pipefail
@@ -32,9 +32,16 @@ else
     echo "bluetoothctl is already installed."
 fi
 
+# Ensure virtual environment is present and activated
+echo "Setting up virtual environment for package installation..."
+if [ ! -d "venv" ]; then
+    exec_cmd "python3 -m venv venv"
+fi
+source venv/bin/activate
+
 # Navigate to the directory containing the package
 echo "Navigating to the package directory..."
-exec_cmd "cd $(dirname "$0")"
+cd "$(dirname "$0")"
 
 # Install the bluetooth_manager package
 echo "Installing the bluetooth_manager package..."
