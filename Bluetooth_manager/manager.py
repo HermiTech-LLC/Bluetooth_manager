@@ -6,112 +6,82 @@ import logging
 import re
 import os
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
 
-def load_config():
+def load_config(channel='default'):
+    config_path = os.getenv('BLUETOOTH_MANAGER_CONFIG', 'config.yaml')
     try:
-        config_path = os.getenv('BLUETOOTH_MANAGER_CONFIG', 'config.yaml')
         with open(config_path, 'r') as file:
-            return yaml.safe_load(file)['bluetooth_manager']
+            config = yaml.safe_load(file)['bluetooth_manager']
+        channel_config = config.get(f'channel_{channel}', {})
+        return {**config['default'], **channel_config}
     except FileNotFoundError:
-        raise FileNotFoundError("Configuration file not found at {}".format(config_path))
+        logging.error(f"Configuration file not found at {config_path}")
+        raise
     except yaml.YAMLError as e:
-        raise RuntimeError("Error parsing the configuration file: " + str(e))
-
-config = load_config()
+        logging.error(f"Error parsing the configuration file: {e}")
+        raise
 
 class BluetoothManagerError(Exception):
-    """Custom exception for BluetoothManager errors."""
     def __init__(self, message, command=None, errors=None):
         super().__init__(message)
-        self.message = message
         self.command = command
         self.errors = errors
 
     def __str__(self):
-        return f"{self.message}\nCommand: {self.command}\nErrors: {self.errors}"
+        error_details = f"Command: {self.command}, Errors: {self.errors}" if self.errors else "No additional error details."
+        return f"{self.message}\n{error_details}"
 
 class BluetoothManager:
-    """Manage Bluetooth operations with dynamic device handling and concurrent connection limits."""
-    
-    def __init__(self):
-        self.bluetoothctl_path = config['bluetoothctl_path']
-        self.max_connections = config['max_connections']
-        self.connection_semaphore = threading.Semaphore(self.max_connections)
+    def __init__(self, channel='default'):
+        self.config = load_config(channel)
+        self.bluetoothctl_path = self.config['bluetoothctl_path']
+        self.max_connections = self.config['max_connections']
+        self.executor = ThreadPoolExecutor(max_workers=self.max_connections)
         self.setup_logging()
 
     def setup_logging(self):
-        log_path = Path(config['logging']['file'])
-        os.makedirs(log_path.parent, exist_ok=True)  # Ensure log directory exists
-        logging.basicConfig(
-            filename=str(log_path),
-            level=getattr(logging, config['logging']['level']),
-            format=config['logging']['format']
-        )
+        log_path = Path(self.config['logging']['file'])
+        os.makedirs(log_path.parent, exist_ok=True)
+        logging.basicConfig(filename=str(log_path), level=logging.INFO, format=self.config['logging']['format'])
 
     def run_bluetoothctl_command(self, command, wait_time=None):
-        """Execute a command in the bluetoothctl environment and handle its output."""
-        wait_time = wait_time or config['scan']['timeout_seconds']
-        env = os.environ.copy()  # Use the system's environment variables
-        process = subprocess.Popen(
-            [self.bluetoothctl_path],
-            stdin=subprocess.PIPE, 
-            stdout=subprocess.PIPE, 
-            stderr=subprocess.PIPE, 
-            text=True,
-            env=env
-        )
-        try:
-            process.stdin.write(f"{command}\n")
-            process.stdin.flush()
-            time.sleep(wait_time)
-            process.stdin.write("exit\n")
-            process.stdin.flush()
-            output, errors = process.communicate()
-            if errors:
-                raise BluetoothManagerError("Error executing command.", command, errors)
-            return output
-        except subprocess.TimeoutExpired:
-            process.kill()
-            _, errors = process.communicate()
-            raise BluetoothManagerError("Command timeout. Bluetooth operation did not respond in time.", command, errors)
-        finally:
-            process.terminate()
+        wait_time = wait_time or self.config['scan']['timeout_seconds']
+        env = os.environ.copy()
+        with subprocess.Popen([self.bluetoothctl_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, env=env) as process:
+            try:
+                process.stdin.write(f"{command}\nexit\n")
+                process.stdin.flush()
+                stdout, stderr = process.communicate(timeout=wait_time)
+                if stderr:
+                    raise BluetoothManagerError("Error executing command", command, stderr)
+                return stdout
+            except subprocess.TimeoutExpired:
+                process.kill()
+                raise BluetoothManagerError("Command timeout", command)
 
     def discover_devices(self):
-        """Scan for available Bluetooth devices and return a list of device MAC addresses."""
-        logging.info("Scanning for available Bluetooth devices...")
         output = self.run_bluetoothctl_command("scan on")
-        devices = re.findall(config['scan']['device_regex'], output)
-        logging.info(f"Devices found: {devices}")
+        devices = re.findall(self.config['scan']['device_regex'], output)
         return devices
 
     def connect_device(self, device_mac):
-        """Connect to a specific Bluetooth device using a semaphore to limit concurrent connections."""
-        with self.connection_semaphore:
-            logging.info(f"Attempting to connect to {device_mac}...")
-            output = self.run_bluetoothctl_command(
-                f"connect {device_mac}", 
-                wait_time=config['connection']['response_timeout']
-            )
-            if config['connection']['expected_response'] in output:
+        try:
+            output = self.run_bluetoothctl_command(f"connect {device_mac}", self.config['connection']['response_timeout'])
+            if self.config['connection']['expected_response'] in output:
                 logging.info(f"Successfully connected to {device_mac}.")
             else:
                 logging.error(f"Failed to connect to {device_mac}.")
+        except BluetoothManagerError as e:
+            logging.error(str(e))
 
     def manage_connections(self):
-        """Manage connections to discovered devices."""
         devices = self.discover_devices()
-        threads = []
-        for device_mac in devices[:self.max_connections]:
-            thread = threading.Thread(target=self.connect_device, args=(device_mac,))
-            threads.append(thread)
-            thread.start()
-
-        for thread in threads:
-            thread.join()
-
+        futures = [self.executor.submit(self.connect_device, mac) for mac in devices[:self.max_connections]]
+        for future in futures:
+            future.result()  # This ensures we wait for all tasks to complete
         logging.info("All device connection attempts are complete.")
 
-# Instantiate and use BluetoothManager
-bluetooth_manager = BluetoothManager()
+# Example usage:
+bluetooth_manager = BluetoothManager(channel='1')
 bluetooth_manager.manage_connections()
