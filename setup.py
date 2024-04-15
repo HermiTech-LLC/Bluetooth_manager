@@ -1,19 +1,22 @@
 from setuptools import setup, find_packages
+import os
 
 # Improved handling of README file for long description
-try:
-    with open('README.md', 'r', encoding='utf-8') as fh:
+readme_file = 'README.md'
+long_description = "A detailed description is missing. Please check the README.md file."
+if os.path.exists(readme_file):
+    with open(readme_file, 'r', encoding='utf-8') as fh:
         long_description = fh.read()
-except FileNotFoundError:
-    long_description = "A detailed description is missing. Please check the README.md file."
+else:
     print("WARNING: README.md file not found.")
 
 # Load requirements from requirements.txt file
-try:
-    with open('requirements.txt', 'r', encoding='utf-8') as fh:
-        requirements = fh.readlines()
-except FileNotFoundError:
-    requirements = []
+requirements_file = 'requirements.txt'
+requirements = []
+if os.path.exists(requirements_file):
+    with open(requirements_file, 'r', encoding='utf-8') as fh:
+        requirements = [line.strip() for line in fh.readlines() if line.strip()]
+else:
     print("WARNING: requirements.txt file not found. Continuing without installing any dependencies.")
 
 setup(
@@ -23,10 +26,10 @@ setup(
     description='A package to manage Bluetooth devices using bluetoothctl',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    author='Ant O, Greene',
+    author='Ant O. Greene',
     author_email='anthonygreene2007@gmail.com',
-    url='https://github.com/LoQiseaking69/BT_manager',
-    install_requires=[req.strip() for req in requirements],
+    url='https://github.com/HermiTech-LLC/BT_manager',
+    install_requires=requirements,
     python_requires='>=3.6',
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -41,4 +44,10 @@ setup(
         'Programming Language :: Python :: 3.10',
     ],
     license='AGPLv3',
+    keywords='bluetooth, bluetoothctl, device management',
+    project_urls={
+        'Documentation': 'https://github.com/HermiTech-LLC/BT_manager#readme',
+        'Source': 'https://github.com/HermiTech-LLC/BT_manager',
+        'Tracker': 'https://github.com/HermiTech-LLC/BT_manager/issues',
+    },
 )
