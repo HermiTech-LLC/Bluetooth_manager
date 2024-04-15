@@ -23,8 +23,12 @@ if (-not $pipInstalled) {
 }
 
 # Install required Python packages
-Write-Output "Installing required Python packages..."
-pip install -r requirements.txt
+Write-Output "Installing wxPython..."
+pip install wxPython
+
+# Run setup.py to package Bluetooth_manager
+Write-Output "Packaging the Bluetooth_manager..."
+python .\Bluetooth_manager\setup.py install
 
 # Configuration file placement (if required)
 $configPath = "config.yaml"
@@ -33,9 +37,9 @@ if (-not (Test-Path $configPath)) {
     Copy-Item -Path "config.yaml.template" -Destination $configPath
 }
 
-# Running the Bluetooth Manager script
-Write-Output "Starting the Bluetooth Manager..."
-python .\BluetoothManager.py
+# Running the SynthDash script
+Write-Output "Starting the SynthDash..."
+python .\SynthDash.py
 
 # Restore original execution policy if needed
 Set-ExecutionPolicy -ExecutionPolicy Restricted -Scope CurrentUser -Force
