@@ -1,45 +1,80 @@
-# Ensure the script is running with administrative privileges
-if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    Write-Warning "You do not have Administrator rights to run this script! Please re-run as an Administrator."
-    break
+# Set strict error handling
+$ErrorActionPreference = "Stop"
+
+# Setup logging
+$logFile = "deploy_bluetooth_manager.log"
+Start-Transcript -Path $logFile -Append
+Write-Output "Deployment started at $(Get-Date)"
+
+function ExecCmd {
+    param([string]$command)
+    Write-Host "+ $command" -ForegroundColor Cyan
+    & powershell -Command $command
+    if ($LASTEXITCODE -ne 0) {
+        throw "Command failed with exit code $LASTEXITCODE: $command"
+    }
 }
 
-# Set Execution Policy to allow script execution
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+function CommandExists {
+    param([string]$command)
+    $null = Get-Command $command -ErrorAction SilentlyContinue
+    return $?
+}
 
-# Install Python and pip if they are not already installed
-$pythonInstalled = Get-Command python -ErrorAction SilentlyContinue
-if (-not $pythonInstalled) {
-    Write-Output "Python is not installed. Installing Python..."
-    # Installing Python; adjust the path and version as necessary
+Write-Host "Preparing to deploy the bluetooth_manager package..."
+
+# Ensure necessary tools and libraries are installed
+Write-Host "Checking for required system tools..."
+
+if (-not (CommandExists "python")) {
+    Write-Host "Python is not installed, installing it..."
     Start-Process "https://www.python.org/ftp/python/3.9.0/python-3.9.0-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
 }
 
-# Check pip installation and install if necessary
-$pipInstalled = Get-Command pip -ErrorAction SilentlyContinue
-if (-not $pipInstalled) {
-    Write-Output "Pip is not installed. Installing pip..."
-    python -m ensurepip --upgrade
+if (-not (CommandExists "pip")) {
+    Write-Host "pip is not installed, installing it..."
+    ExecCmd "python -m ensurepip --upgrade"
 }
 
-# Install required Python packages
-Write-Output "Installing wxPython..."
-pip install wxPython
-
-# Run setup.py to package Bluetooth_manager
-Write-Output "Packaging the Bluetooth_manager..."
-python .\Bluetooth_manager\setup.py install
-
-# Configuration file placement (if required)
-$configPath = "config.yaml"
-if (-not (Test-Path $configPath)) {
-    Write-Output "Placing the configuration file..."
-    Copy-Item -Path "config.yaml.template" -Destination $configPath
+# Ensure wheel is installed for building packages
+if ('wheel' -notin (pip list)) {
+    Write-Host "Wheel is not installed. Installing..."
+    ExecCmd "pip install wheel"
+} else {
+    Write-Host "Wheel is already installed."
 }
 
-# Running the SynthDash script
-Write-Output "Starting the SynthDash..."
-python .\SynthDash.py
+# Check Bluetooth support service status and start if not running
+$bluetoothService = Get-Service -Name bthserv -ErrorAction SilentlyContinue
+if ($bluetoothService -eq $null) {
+    Write-Host "Bluetooth service is not available on this system."
+} elseif ($bluetoothService.Status -ne 'Running') {
+    Write-Host "Starting Bluetooth support service..."
+    Start-Service bthserv
+} else {
+    Write-Host "Bluetooth support service is already running."
+}
 
-# Restore original execution policy if needed
-Set-ExecutionPolicy -ExecutionPolicy Restricted -Scope CurrentUser -Force
+# Setup and activate the virtual environment
+Write-Host "Setting up the virtual environment..."
+ExecCmd "python -m venv venv"
+. .\venv\Scripts\Activate.ps1
+
+# Install the package
+Write-Host "Installing the bluetooth_manager package..."
+ExecCmd "pip install ."
+
+# Verify the installation by attempting to import the package
+Write-Host "Verifying the installation..."
+$verify = { python -c "from Bluetooth_manager.manager import BluetoothManager; print('Import successful')" }
+Invoke-Command -ScriptBlock $verify
+if ($?) {
+    Write-Host "Installation verified successfully."
+} else {
+    Write-Host "Failed to verify the installation. Check logs for details."
+    exit 1
+}
+
+Write-Host "Deployment completed successfully."
+
+Stop-Transcript
