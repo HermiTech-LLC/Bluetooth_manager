@@ -20,7 +20,7 @@ setup(
     name='bluetooth_manager',
     version='0.1.0',
     packages=find_packages(),
-    description='A package to manage Bluetooth devices using bluetoothctl',
+    description='A package to manage Bluetooth devices using Windows PowerShell commands',
     long_description=long_description,
     long_description_content_type='text/markdown',
     author='Ant O, Greene',
