@@ -1,4 +1,4 @@
-name: Build on Ubuntu 20.04
+name: Build wxPython Application on Windows
 
 on:
   push:
@@ -7,27 +7,29 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04  # Specifies the runner environment.
+    runs-on: windows-latest  # Uses the latest Windows runner provided by GitHub Actions.
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2  # Checks out the repository code under $GITHUB_WORKSPACE.
+        uses: actions/checkout@v3  # Checks out the repository code under $GITHUB_WORKSPACE.
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'  # Specifies the Python version to use.
 
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y bluez python3-pip  # Installs bluez for Bluetooth control and pip for Python package installations.
       - name: Install Python dependencies
         run: |
-          python3 -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then
-            python3 -m pip install -r requirements.txt  # Installs Python dependencies specified in requirements.txt if it exists.
-          fi
+          python -m pip install --upgrade pip
+          if exist requirements.txt (
+            python -m pip install -r requirements.txt  # Installs Python dependencies specified in requirements.txt.
+          )
+          python -m pip install wxPython  # Additionally installs wxPython necessary for the GUI application.
+
       - name: Install the package
         run: |
-          python3 setup.py install  # Installs the package using setup.py.
+          python setup.py install  # Installs your package from the root directory.
+
+      - name: Run wxPython application
+        run: |
+          python SynthDash.py  # Executes the wxPython application script from the root directory.
