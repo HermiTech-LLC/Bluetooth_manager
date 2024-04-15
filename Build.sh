@@ -1,83 +1,65 @@
 #!/bin/bash
 
-# Enhanced script for deploying the bluetooth_manager package on a Raspberry Pi 4B.
-# It verifies and installs the necessary dependencies, manages virtual environments,
-# and provides detailed feedback and options to the user.
+# Enhanced deployment script for bluetooth_manager on a Raspberry Pi
 
-# Exit if any command fails and enable verbose output for debugging
 set -eo pipefail
-
-# Initialize log file
 log_file="deploy_bluetooth_manager.log"
-echo "Deployment log - $(date)" > $log_file
+echo "Deployment started at $(date)" > $log_file
 
-# Function to echo, execute commands, and log output
 exec_cmd() {
     echo "+ $@" | tee -a $log_file
     eval "$@" 2>&1 | tee -a $log_file
 }
 
-# Helper function to check command existence
 command_exists() {
-    command -v "$1" &>/dev/null
+    command -v "$1" >/dev/null 2>&1
 }
 
-# Start deployment
-echo "Starting deployment of the bluetooth_manager package..." | tee -a $log_file
+echo "Preparing to deploy the bluetooth_manager package..." | tee -a $log_file
 
-# Option parsing for skipping certain steps
-while [[ "$#" -gt 0 ]]; do
-    case $1 in
-        --skip-python) skip_python="yes"; shift ;;
-        --skip-bluetoothctl) skip_bluetoothctl="yes"; shift ;;
-        --venv-path) venv_path="$2"; shift; shift ;;
-        *) echo "Unknown parameter: $1"; exit 1 ;;
-    esac
-done
+# Ensure necessary tools and libraries are installed
+echo "Checking for required system tools..." | tee -a $log_file
 
-# Check and install Python 3.6 or higher
-if [ "$skip_python" != "yes" ]; then
-    echo "Checking for Python 3.6+ installation..." | tee -a $log_file
-    if ! command_exists python3 || [[ $(python3 -c 'import sys; print(sys.version_info >= (3, 6))') != "True" ]]; then
-        echo "Python 3.6+ is not installed. Installing Python..." | tee -a $log_file
-        exec_cmd "sudo apt-get update"
-        exec_cmd "sudo apt-get install -y python3 python3-pip"
-    else
-        echo "Python 3.6+ is already installed." | tee -a $log_file
-    fi
-fi
-
-# Ensure bluetoothctl is installed
-if [ "$skip_bluetoothctl" != "yes" ]; then
-    echo "Checking for bluetoothctl..." | tee -a $log_file
-    if ! command_exists bluetoothctl; then
-        echo "bluetoothctl not found. Installing bluetooth packages..." | tee -a $log_file
-        exec_cmd "sudo apt-get install -y bluez"
-    else
-        echo "bluetoothctl is already installed." | tee -a $log_file
-    fi
-fi
-
-# Ensure virtual environment is present and activated
-venv_path="${venv_path:-venv}"
-echo "Setting up virtual environment at $venv_path for package installation..." | tee -a $log_file
-if [ ! -d "$venv_path" ]; then
-    exec_cmd "python3 -m venv $venv_path"
+if ! command_exists python3 || ! command_exists pip3; then
+    echo "Python or pip is not installed, installing them..." | tee -a $log_file
+    exec_cmd "sudo apt-get update"
+    exec_cmd "sudo apt-get install -y python3 python3-pip"
 else
-    echo "Virtual environment already exists at $venv_path." | tee -a $log_file
+    echo "Python and pip are already installed." | tee -a $log_file
 fi
-source $venv_path/bin/activate
 
-# Navigate to the directory containing the package
-echo "Navigating to the package directory..." | tee -a $log_file
-cd "$(dirname "$0")"
+# Ensure wheel is installed for building packages
+if ! pip3 list | grep -q wheel; then
+    echo "Installing wheel..." | tee -a $log_file
+    exec_cmd "pip3 install wheel"
+else
+    echo "Wheel is already installed." | tee -a $log_file
+fi
 
-# Install the bluetooth_manager package
+# Ensure bluetoothctl is available
+if ! command_exists bluetoothctl; then
+    echo "bluetoothctl not available, installing bluez..." | tee -a $log_file
+    exec_cmd "sudo apt-get install -y bluez"
+else
+    echo "bluetoothctl is available." | tee -a $log_file
+fi
+
+# Setup and activate the virtual environment
+echo "Setting up the virtual environment..." | tee -a $log_file
+exec_cmd "python3 -m venv venv"
+source venv/bin/activate
+
+# Install the package
 echo "Installing the bluetooth_manager package..." | tee -a $log_file
 exec_cmd "pip3 install ."
 
-# Optionally, run a script to test the installation
-echo "Running a test to ensure everything is set up correctly..." | tee -a $log_file
-exec_cmd "python3 -c 'from bluetooth_manager.manager import BluetoothManager; manager = BluetoothManager(); print(\"Setup successful if no errors appear!\")'"
+# Verify the installation by attempting to import the package
+echo "Verifying the installation..." | tee -a $log_file
+if python3 -c "from Bluetooth_manager.manager import BluetoothManager; print('Import successful')" > /dev/null 2>&1; then
+    echo "Installation verified successfully." | tee -a $log_file
+else
+    echo "Failed to verify the installation. Check logs for details." | tee -a $log_file
+    exit 1
+fi
 
-echo "Deployment complete. The bluetooth_manager is ready to use." | tee -a $log_file
+echo "Deployment completed successfully." | tee -a $log_file
