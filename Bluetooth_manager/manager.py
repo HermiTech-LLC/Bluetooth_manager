@@ -1,7 +1,6 @@
 import yaml
 import subprocess
 import time
-import threading
 import logging
 import re
 import os
@@ -61,7 +60,10 @@ class BluetoothManager:
                 raise BluetoothManagerError("Command timeout", command)
 
     def discover_devices(self):
-        output = self.run_bluetoothctl_command("scan on")
+        self.run_bluetoothctl_command("scan on")
+        time.sleep(self.config['scan']['duration'])
+        output = self.run_bluetoothctl_command("devices")
+        self.run_bluetoothctl_command("scan off")
         devices = re.findall(self.config['scan']['device_regex'], output)
         return devices
 
@@ -75,13 +77,25 @@ class BluetoothManager:
         except BluetoothManagerError as e:
             logging.error(str(e))
 
+    def disconnect_all_devices(self):
+        try:
+            self.run_bluetoothctl_command("disconnect")
+            logging.info("All devices have been disconnected.")
+        except BluetoothManagerError as e:
+            logging.error(str(e))
+
+    def list_connected_devices(self):
+        output = self.run_bluetoothctl_command("paired-devices")
+        connected_devices = [device for device in output.splitlines() if "yes" in device]
+        return connected_devices
+
     def manage_connections(self):
         devices = self.discover_devices()
-        futures = [self.executor.submit(self.connect_device, mac) for mac in devices[:self.max_connections]]
+        connected_devices = self.list_connected_devices()
+        devices_to_connect = [mac for mac in devices if mac not in connected_devices]
+        futures = [self.executor.submit(self.connect_device, mac) for mac in devices_to_connect]
         for future in futures:
             future.result()  # This ensures we wait for all tasks to complete
         logging.info("All device connection attempts are complete.")
 
-# Example usage:
-bluetooth_manager = BluetoothManager(channel='1')
-bluetooth_manager.manage_connections()
+# Example usage is removed, it should be in the CLI script instead.
