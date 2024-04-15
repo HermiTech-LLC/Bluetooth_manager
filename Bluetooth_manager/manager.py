@@ -34,66 +34,52 @@ class BluetoothManager:
     """Manage Bluetooth operations with dynamic device handling and concurrent connection limits."""
     
     def __init__(self):
-        self.bluetoothctl_path = config['bluetoothctl_path']
         self.max_connections = config['max_connections']
         self.connection_semaphore = threading.Semaphore(self.max_connections)
         self.setup_logging()
 
     def setup_logging(self):
         log_path = Path(config['logging']['file'])
-        os.makedirs(log_path.parent, exist_ok=True)  # Ensure log directory exists
+        os.makedirs(log_path.parent, exist_ok=True)
         logging.basicConfig(
             filename=str(log_path),
             level=getattr(logging, config['logging']['level']),
             format=config['logging']['format']
         )
 
-    def run_bluetoothctl_command(self, command, wait_time=None):
-        """Execute a command in the bluetoothctl environment and handle its output."""
+    def run_powershell_command(self, ps_command, wait_time=None):
+        """Execute a PowerShell command to manage Bluetooth on Windows."""
         wait_time = wait_time or config['scan']['timeout_seconds']
-        env = os.environ.copy()  # Use the system's environment variables
-        process = subprocess.Popen(
-            [self.bluetoothctl_path],
-            stdin=subprocess.PIPE, 
-            stdout=subprocess.PIPE, 
-            stderr=subprocess.PIPE, 
-            text=True,
-            env=env
-        )
+        command = ['powershell', '-Command', ps_command]
         try:
-            process.stdin.write(f"{command}\n")
-            process.stdin.flush()
-            time.sleep(wait_time)
-            process.stdin.write("exit\n")
-            process.stdin.flush()
-            output, errors = process.communicate()
-            if errors:
-                raise BluetoothManagerError("Error executing command.", command, errors)
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            output, errors = process.communicate(timeout=wait_time)
+            if process.returncode != 0:
+                raise BluetoothManagerError("Command failed.", ps_command, errors)
             return output
         except subprocess.TimeoutExpired:
             process.kill()
             _, errors = process.communicate()
-            raise BluetoothManagerError("Command timeout. Bluetooth operation did not respond in time.", command, errors)
+            raise BluetoothManagerError("Command timeout. Bluetooth operation did not respond in time.", ps_command, errors)
         finally:
             process.terminate()
 
     def discover_devices(self):
-        """Scan for available Bluetooth devices and return a list of device MAC addresses."""
+        """Use PowerShell to scan for available Bluetooth devices."""
         logging.info("Scanning for available Bluetooth devices...")
-        output = self.run_bluetoothctl_command("scan on")
+        ps_command = "Get-PnpDevice -Class Bluetooth | Where-Object {$_.Status -eq 'OK'} | Select-Object -ExpandProperty FriendlyName"
+        output = self.run_powershell_command(ps_command)
         devices = re.findall(config['scan']['device_regex'], output)
         logging.info(f"Devices found: {devices}")
         return devices
 
     def connect_device(self, device_mac):
-        """Connect to a specific Bluetooth device using a semaphore to limit concurrent connections."""
+        """Connect to a specific Bluetooth device using PowerShell."""
         with self.connection_semaphore:
             logging.info(f"Attempting to connect to {device_mac}...")
-            output = self.run_bluetoothctl_command(
-                f"connect {device_mac}", 
-                wait_time=config['connection']['response_timeout']
-            )
-            if config['connection']['expected_response'] in output:
+            ps_command = f"Add-BluetoothDevice -DeviceID '{device_mac}'"
+            output = self.run_powershell_command(ps_command, wait_time=config['connection']['response_timeout'])
+            if 'connected' in output.lower():
                 logging.info(f"Successfully connected to {device_mac}.")
             else:
                 logging.error(f"Failed to connect to {device_mac}.")
