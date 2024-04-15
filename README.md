@@ -1,6 +1,6 @@
 # Bluetooth Manager Package
-
-![Bluetooth Manager](https://github.com/LoQiseaking69/BT_manager/blob/main/BTmanager.PNG)
+_______________________________________
+![Bluetooth Manager](https://github.com/LoQiseaking69/BT_manager/blob/main/BTmlogo.PNG)
 
 ## Overview
 The `bluetooth_manager` package is designed for programmable Bluetooth device management via `bluetoothctl` on compatible systems. It provides a powerful interface for integrating Bluetooth capabilities into larger applications or for standalone usage, ensuring high-level control and efficient management of Bluetooth devices.
