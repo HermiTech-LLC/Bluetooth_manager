@@ -1,34 +1,39 @@
 bluetooth_manager:
+  # Default configuration applied to all channels unless overridden
   default:
-    bluetoothctl_path: "/usr/bin/bluetoothctl"
-    max_connections: 4
+    bluetoothctl_path: "/usr/bin/bluetoothctl"  # Path to bluetoothctl command
+    max_connections: 4                          # Default number of maximum concurrent connections
     logging:
-      level: "INFO"
-      format: "%(asctime)s - %(levelname)s - %(message)s"
-      file: "logs/bluetooth_manager.log"
+      level: "INFO"                             # Logging level
+      format: "%(asctime)s - %(levelname)s - %(message)s"  # Logging format
+      file: "logs/bluetooth_manager.log"        # Log file path
     retry:
-      enable: true
-      max_attempts: 3
-      delay_seconds: 2
+      enable: true                              # Enable retry mechanism
+      max_attempts: 3                           # Maximum retry attempts
+      delay_seconds: 2                          # Delay between retries in seconds
     scan:
-      timeout_seconds: 10
-      device_regex: "Device (\\S+) "
+      timeout_seconds: 10                       # Timeout for scan operation
+      device_regex: "Device (\\S+) "            # Regex to extract device information from output
     connection:
-      response_timeout: 5
-      expected_response: "Connection successful"
+      response_timeout: 5                       # Timeout for expecting a response in connection operation
+      expected_response: "Connection successful"  # Expected string in output for a successful connection
+  
+  # Channel-specific configurations that override the default settings
   channel_1:
-    max_connections: 2
+    max_connections: 2                          # Reduced number of maximum concurrent connections
     retry:
-      enable: true
-      max_attempts: 5
-      delay_seconds: 3
+      enable: true                              # Retain retry mechanism
+      max_attempts: 5                           # Increased retry attempts
+      delay_seconds: 3                          # Increased delay between retries
+
   channel_2:
-    max_connections: 6
+    max_connections: 6                          # Increased number of maximum concurrent connections
     retry:
-      enable: false
+      enable: false                             # Disable retry mechanism
+
   channel_3:
-    max_connections: 3
+    max_connections: 3                          # Specific number of maximum concurrent connections
     retry:
-      enable: true
-      max_attempts: 4
-      delay_seconds: 1
+      enable: true                              # Retain retry mechanism
+      max_attempts: 4                           # Custom number of retry attempts
+      delay_seconds: 1                          # Reduced delay between retries
