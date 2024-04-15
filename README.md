@@ -21,7 +21,9 @@ To install `bluetooth_manager`, execute the provided `Build.sh` shell script, wh
     ```bash
     ./Build.sh
     ```
-
+______________________________________
+![screenshot](https://github.com/LoQiseaking69/BT_manager/blob/main/IMG_9452.jpeg)
+______________________________________
 The script will check for Python 3.6+, install the necessary dependencies, and set up the package. Make sure to have `bluetoothctl` installed on your Linux system for the package to function correctly.
 
 ## Dependencies
