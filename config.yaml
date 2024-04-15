@@ -1,17 +1,12 @@
 bluetooth_manager:
-  bluetoothctl_path: "/usr/bin/bluetoothctl"  # Path to the bluetoothctl executable
-  max_connections: 4  # Maximum number of concurrent Bluetooth connections
+  max_connections: 5
   logging:
-    level: "INFO"  # Logging level
-    format: "%(asctime)s - %(levelname)s - %(message)s"  # Logging format
-    file: "logs/bluetooth_manager.log"  # File where logs are written; adjusted for non-root environments
-  retry:
-    enable: true  # Enable retry mechanism
-    max_attempts: 3  # Maximum number of retry attempts
-    delay_seconds: 2  # Delay between retry attempts in seconds
+    file: ./logs/bluetooth_manager.log
+    level: INFO
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
   scan:
-    timeout_seconds: 10  # Timeout for scanning operations
-    device_regex: "Device (\\S+) "  # Regex pattern to extract device info from output
+    timeout_seconds: 10
+    device_regex: 'Bluetooth Device (.*?)\s'
   connection:
-    response_timeout: 5  # Timeout waiting for a connection response
-    expected_response: "Connection successful"  # Expected response string on successful connection
+    response_timeout: 15
+    expected_response: 'connected'
