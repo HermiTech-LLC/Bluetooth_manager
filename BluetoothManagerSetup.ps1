@@ -21,7 +21,7 @@ function CommandExists {
     return $?
 }
 
-Write-Host "Preparing to deploy the bluetooth_manager package..."
+Write-Host "Preparing to deploy the BluetoothManager package..."
 
 # Ensure necessary tools and libraries are installed
 Write-Host "Checking for required system tools..."
@@ -36,13 +36,8 @@ if (-not (CommandExists "pip")) {
     ExecCmd "python -m ensurepip --upgrade"
 }
 
-# Ensure wheel is installed for building packages
-if ('wheel' -notin (pip list)) {
-    Write-Host "Wheel is not installed. Installing..."
-    ExecCmd "pip install wheel"
-} else {
-    Write-Host "Wheel is already installed."
-}
+# Ensure wheel and wxPython are installed for building packages
+ExecCmd "pip install wheel wxPython"
 
 # Check Bluetooth support service status and start if not running
 $bluetoothService = Get-Service -Name bthserv -ErrorAction SilentlyContinue
@@ -60,13 +55,13 @@ Write-Host "Setting up the virtual environment..."
 ExecCmd "python -m venv venv"
 . .\venv\Scripts\Activate.ps1
 
-# Install the package
-Write-Host "Installing the bluetooth_manager package..."
+# Install the package using setup.py located at the root
+Write-Host "Installing the BluetoothManager package from the root directory..."
 ExecCmd "pip install ."
 
 # Verify the installation by attempting to import the package
 Write-Host "Verifying the installation..."
-$verify = { python -c "from Bluetooth_manager.manager import BluetoothManager; print('Import successful')" }
+$verify = { python -c "from BluetoothManager.manager import BluetoothManager; print('Import successful')" }
 Invoke-Command -ScriptBlock $verify
 if ($?) {
     Write-Host "Installation verified successfully."
@@ -74,6 +69,10 @@ if ($?) {
     Write-Host "Failed to verify the installation. Check logs for details."
     exit 1
 }
+
+# Run the SynthDash.py application located at the root
+Write-Host "Running the SynthDash.py wxPython dashboard..."
+ExecCmd "python .\SynthDash.py"
 
 Write-Host "Deployment completed successfully."
 
