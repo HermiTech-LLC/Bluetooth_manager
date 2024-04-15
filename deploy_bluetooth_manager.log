@@ -1,0 +1,1026 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20240415071817
+Username: LAPTOP-K8ELH9SS\antho
+RunAs User: LAPTOP-K8ELH9SS\antho
+Configuration Name: 
+Machine: LAPTOP-K8ELH9SS (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Import-Module 'c:\Users\antho\.vscode\extensions\ms-vscode.powershell-2024.2.0\modules\PowerShellEditorServices\PowerShellEditorServices.psd1'; Start-EditorServices -HostName 'Visual Studio Code Host' -HostProfileId 'Microsoft.VSCode' -HostVersion '2024.2.0' -BundledModulesPath 'c:\Users\antho\.vscode\extensions\ms-vscode.powershell-2024.2.0\modules' -EnableConsoleRepl -StartupBanner "PowerShell Extension v2024.2.0
+Copyright (c) Microsoft Corporation.
+
+https://aka.ms/vscode-powershell
+Type 'help' to get help.
+" -LogLevel 'Normal' -LogPath 'c:\Users\antho\AppData\Roaming\Code\User\globalStorage\ms-vscode.powershell\logs\1713179032-50349e2c-f989-4a40-883d-abd046f7549a1713178957216' -SessionDetailsPath 'c:\Users\antho\AppData\Roaming\Code\User\globalStorage\ms-vscode.powershell\sessions\PSES-VSCode-15592-260078.json' -FeatureFlags @() 
+Process ID: 11736
+PSVersion: 5.1.19041.4291
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.4291
+BuildVersion: 10.0.19041.4291
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is deploy_bluetooth_manager.log
+Deployment started at 04/15/2024 07:18:17
+Preparing to deploy the BluetoothManager package...
+Checking for required system tools...
++ pip install wheel wxPython
+
+Bluetooth support service is already running.
+Setting up the virtual environment...
++ python -m venv venv
+
+Installing the BluetoothManager package from the root directory...
++ pip install .
+
+Verifying the installation...
+
+Installation verified successfully.
+Running the SynthDash.py wxPython dashboard...
++ python .\SynthDash.py
+
+PS>TerminatingError(): "Command failed with exit code 1: python .\SynthDash.py"
+>> TerminatingError(): "Command failed with exit code 1: python .\SynthDash.py"
+>> TerminatingError(): "Command failed with exit code 1: python .\SynthDash.py"
+Command failed with exit code 1: python .\SynthDash.py
+Command failed with exit code 1: python .\SynthDash.py
+At C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1:14 char:9
++         throw "Command failed with exit code ${LASTEXITCODE}: $comman ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Command failed ... .\SynthDash.py:String) [], RuntimeException
+    + FullyQualifiedErrorId : Command failed with exit code 1: python .\SynthDash.py
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager> ]633;B
+(venv) CommandInvocation(Get-Command): "Get-Command"
+>> ParameterBinding(Get-Command): name="ErrorAction"; value="Ignore"
+>> ParameterBinding(Get-Command): name="Name"; value="Activate.ps1"
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+ExternalScript  Activate.ps1                                                  C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\venv\Scri...
+
+
+(venv) CommandInvocation(Get-Command): "Get-Command"
+>> ParameterBinding(Get-Command): name="ErrorAction"; value="Ignore"
+>> ParameterBinding(Get-Command): name="Name"; value="Write-Host"
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Write-Host                                         3.1.0.0    Microsoft.PowerShell.Utility
+
+
+(venv) CommandInvocation(Get-Help): "Get-Help"
+>> ParameterBinding(Get-Help): name="Name"; value="Write-Host"
+>> ParameterBinding(Get-Help): name="Online"; value="False"
+>> ParameterBinding(Get-Help): name="ErrorAction"; value="Ignore"
+(venv) TerminatingError(): "The pipeline has been stopped."
+>> CommandInvocation(Get-Help): "Get-Help"
+>> ParameterBinding(Get-Help): name="Name"; value="Write-Host"
+>> ParameterBinding(Get-Help): name="Online"; value="False"
+>> ParameterBinding(Get-Help): name="ErrorAction"; value="Ignore"
+>> TerminatingError(): "The pipeline has been stopped."
+>> CommandInvocation(Get-Command): "Get-Command"
+>> ParameterBinding(Get-Command): name="ListImported"; value="True"
+>> ParameterBinding(Get-Command): name="CommandType"; value="Alias"
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           % -> ForEach-Object
+Alias           ? -> Where-Object
+Alias           ac -> Add-Content
+Alias           asnp -> Add-PSSnapin
+Alias           cat -> Get-Content
+Alias           cd -> Set-Location
+Alias           CFS -> ConvertFrom-String                          3.1.0.0    Microsoft.PowerShell.Utility
+Alias           chdir -> Set-Location
+Alias           clc -> Clear-Content
+Alias           clear -> Clear-Host
+Alias           clhy -> Clear-History
+Alias           cli -> Clear-Item
+Alias           clp -> Clear-ItemProperty
+Alias           cls -> Clear-Host
+Alias           clv -> Clear-Variable
+Alias           cnsn -> Connect-PSSession
+Alias           compare -> Compare-Object
+Alias           copy -> Copy-Item
+Alias           cp -> Copy-Item
+Alias           cpi -> Copy-Item
+Alias           cpp -> Copy-ItemProperty
+Alias           curl -> Invoke-WebRequest
+Alias           cvpa -> Convert-Path
+Alias           dbp -> Disable-PSBreakpoint
+Alias           del -> Remove-Item
+Alias           diff -> Compare-Object
+Alias           dir -> Get-ChildItem
+Alias           dnsn -> Disconnect-PSSession
+Alias           ebp -> Enable-PSBreakpoint
+Alias           echo -> Write-Output
+Alias           epal -> Export-Alias
+Alias           epcsv -> Export-Csv
+Alias           epsn -> Export-PSSession
+Alias           erase -> Remove-Item
+Alias           etsn -> Enter-PSSession
+Alias           exsn -> Exit-PSSession
+Alias           fc -> Format-Custom
+Alias           fhx -> Format-Hex                                  3.1.0.0    Microsoft.PowerShell.Utility
+Alias           fl -> Format-List
+Alias           foreach -> ForEach-Object
+Alias           ft -> Format-Table
+Alias           fw -> Format-Wide
+Alias           gal -> Get-Alias
+Alias           gbp -> Get-PSBreakpoint
+Alias           gc -> Get-Content
+Alias           gcb -> Get-Clipboard                               3.1.0.0    Microsoft.PowerShell.Management
+Alias           gci -> Get-ChildItem
+Alias           gcm -> Get-Command
+Alias           gcs -> Get-PSCallStack
+Alias           gdr -> Get-PSDrive
+Alias           ghy -> Get-History
+Alias           gi -> Get-Item
+Alias           gin -> Get-ComputerInfo                            3.1.0.0    Microsoft.PowerShell.Management
+Alias           gjb -> Get-Job
+Alias           gl -> Get-Location
+Alias           gm -> Get-Member
+Alias           gmo -> Get-Module
+Alias           gp -> Get-ItemProperty
+Alias           gps -> Get-Process
+Alias           gpv -> Get-ItemPropertyValue
+Alias           group -> Group-Object
+Alias           gsn -> Get-PSSession
+Alias           gsnp -> Get-PSSnapin
+Alias           gsv -> Get-Service
+Alias           gtz -> Get-TimeZone                                3.1.0.0    Microsoft.PowerShell.Management
+Alias           gu -> Get-Unique
+Alias           gv -> Get-Variable
+Alias           gwmi -> Get-WmiObject
+Alias           h -> Get-History
+Alias           history -> Get-History
+Alias           icm -> Invoke-Command
+Alias           iex -> Invoke-Expression
+Alias           ihy -> Invoke-History
+Alias           ii -> Invoke-Item
+Alias           ipal -> Import-Alias
+Alias           ipcsv -> Import-Csv
+Alias           ipmo -> Import-Module
+Alias           ipsn -> Import-PSSession
+Alias           irm -> Invoke-RestMethod
+Alias           ise -> powershell_ise.exe
+Alias           iwmi -> Invoke-WmiMethod
+Alias           iwr -> Invoke-WebRequest
+Alias           kill -> Stop-Process
+Alias           lp -> Out-Printer
+Alias           ls -> Get-ChildItem
+Alias           man -> help
+Alias           md -> mkdir
+Alias           measure -> Measure-Object
+Alias           mi -> Move-Item
+Alias           mount -> New-PSDrive
+Alias           move -> Move-Item
+Alias           mp -> Move-ItemProperty
+Alias           mv -> Move-Item
+Alias           nal -> New-Alias
+Alias           ndr -> New-PSDrive
+Alias           ni -> New-Item
+Alias           nmo -> New-Module
+Alias           npssc -> New-PSSessionConfigurationFile
+Alias           nsn -> New-PSSession
+Alias           nv -> New-Variable
+Alias           ogv -> Out-GridView
+Alias           oh -> Out-Host
+Alias           popd -> Pop-Location
+Alias           ps -> Get-Process
+Alias           psedit -> Open-EditorFile                          0.2.0      PowerShellEditorServices.Commands
+Alias           pushd -> Push-Location
+Alias           pwd -> Get-Location
+Alias           r -> Invoke-History
+Alias           rbp -> Remove-PSBreakpoint
+Alias           rcjb -> Receive-Job
+Alias           rcsn -> Receive-PSSession
+Alias           rd -> Remove-Item
+Alias           rdr -> Remove-PSDrive
+Alias           ren -> Rename-Item
+Alias           ri -> Remove-Item
+Alias           rjb -> Remove-Job
+Alias           rm -> Remove-Item
+Alias           rmdir -> Remove-Item
+Alias           rmo -> Remove-Module
+Alias           rni -> Rename-Item
+Alias           rnp -> Rename-ItemProperty
+Alias           rp -> Remove-ItemProperty
+Alias           rsn -> Remove-PSSession
+Alias           rsnp -> Remove-PSSnapin
+Alias           rujb -> Resume-Job
+Alias           rv -> Remove-Variable
+Alias           rvpa -> Resolve-Path
+Alias           rwmi -> Remove-WmiObject
+Alias           sajb -> Start-Job
+Alias           sal -> Set-Alias
+Alias           saps -> Start-Process
+Alias           sasv -> Start-Service
+Alias           sbp -> Set-PSBreakpoint
+Alias           sc -> Set-Content
+Alias           scb -> Set-Clipboard                               3.1.0.0    Microsoft.PowerShell.Management
+Alias           select -> Select-Object
+Alias           set -> Set-Variable
+Alias           shcm -> Show-Command
+Alias           si -> Set-Item
+Alias           sl -> Set-Location
+Alias           sleep -> Start-Sleep
+Alias           sls -> Select-String
+Alias           sort -> Sort-Object
+Alias           sp -> Set-ItemProperty
+Alias           spjb -> Stop-Job
+Alias           spps -> Stop-Process
+Alias           spsv -> Stop-Service
+Alias           start -> Start-Process
+Alias           stz -> Set-TimeZone                                3.1.0.0    Microsoft.PowerShell.Management
+Alias           sujb -> Suspend-Job
+Alias           sv -> Set-Variable
+Alias           swmi -> Set-WmiInstance
+Alias           tee -> Tee-Object
+Alias           trcm -> Trace-Command
+Alias           type -> Get-Content
+Alias           wget -> Invoke-WebRequest
+Alias           where -> Where-Object
+Alias           wjb -> Wait-Job
+Alias           write -> Write-Output
+
+
+(venv) CommandInvocation(Get-Command): "Get-Command"
+>> ParameterBinding(Get-Command): name="ListImported"; value="True"
+>> ParameterBinding(Get-Command): name="CommandType"; value="Alias"
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           % -> ForEach-Object
+Alias           ? -> Where-Object
+Alias           ac -> Add-Content
+Alias           asnp -> Add-PSSnapin
+Alias           cat -> Get-Content
+Alias           cd -> Set-Location
+Alias           CFS -> ConvertFrom-String                          3.1.0.0    Microsoft.PowerShell.Utility
+Alias           chdir -> Set-Location
+Alias           clc -> Clear-Content
+Alias           clear -> Clear-Host
+Alias           clhy -> Clear-History
+Alias           cli -> Clear-Item
+Alias           clp -> Clear-ItemProperty
+Alias           cls -> Clear-Host
+Alias           clv -> Clear-Variable
+Alias           cnsn -> Connect-PSSession
+Alias           compare -> Compare-Object
+Alias           copy -> Copy-Item
+Alias           cp -> Copy-Item
+Alias           cpi -> Copy-Item
+Alias           cpp -> Copy-ItemProperty
+Alias           curl -> Invoke-WebRequest
+Alias           cvpa -> Convert-Path
+Alias           dbp -> Disable-PSBreakpoint
+Alias           del -> Remove-Item
+Alias           diff -> Compare-Object
+Alias           dir -> Get-ChildItem
+Alias           dnsn -> Disconnect-PSSession
+Alias           ebp -> Enable-PSBreakpoint
+Alias           echo -> Write-Output
+Alias           epal -> Export-Alias
+Alias           epcsv -> Export-Csv
+Alias           epsn -> Export-PSSession
+Alias           erase -> Remove-Item
+Alias           etsn -> Enter-PSSession
+Alias           exsn -> Exit-PSSession
+Alias           fc -> Format-Custom
+Alias           fhx -> Format-Hex                                  3.1.0.0    Microsoft.PowerShell.Utility
+Alias           fl -> Format-List
+Alias           foreach -> ForEach-Object
+Alias           ft -> Format-Table
+Alias           fw -> Format-Wide
+Alias           gal -> Get-Alias
+Alias           gbp -> Get-PSBreakpoint
+Alias           gc -> Get-Content
+Alias           gcb -> Get-Clipboard                               3.1.0.0    Microsoft.PowerShell.Management
+Alias           gci -> Get-ChildItem
+Alias           gcm -> Get-Command
+Alias           gcs -> Get-PSCallStack
+Alias           gdr -> Get-PSDrive
+Alias           ghy -> Get-History
+Alias           gi -> Get-Item
+Alias           gin -> Get-ComputerInfo                            3.1.0.0    Microsoft.PowerShell.Management
+Alias           gjb -> Get-Job
+Alias           gl -> Get-Location
+Alias           gm -> Get-Member
+Alias           gmo -> Get-Module
+Alias           gp -> Get-ItemProperty
+Alias           gps -> Get-Process
+Alias           gpv -> Get-ItemPropertyValue
+Alias           group -> Group-Object
+Alias           gsn -> Get-PSSession
+Alias           gsnp -> Get-PSSnapin
+Alias           gsv -> Get-Service
+Alias           gtz -> Get-TimeZone                                3.1.0.0    Microsoft.PowerShell.Management
+Alias           gu -> Get-Unique
+Alias           gv -> Get-Variable
+Alias           gwmi -> Get-WmiObject
+Alias           h -> Get-History
+Alias           history -> Get-History
+Alias           icm -> Invoke-Command
+Alias           iex -> Invoke-Expression
+Alias           ihy -> Invoke-History
+Alias           ii -> Invoke-Item
+Alias           ipal -> Import-Alias
+Alias           ipcsv -> Import-Csv
+Alias           ipmo -> Import-Module
+Alias           ipsn -> Import-PSSession
+Alias           irm -> Invoke-RestMethod
+Alias           ise -> powershell_ise.exe
+Alias           iwmi -> Invoke-WmiMethod
+Alias           iwr -> Invoke-WebRequest
+Alias           kill -> Stop-Process
+Alias           lp -> Out-Printer
+Alias           ls -> Get-ChildItem
+Alias           man -> help
+Alias           md -> mkdir
+Alias           measure -> Measure-Object
+Alias           mi -> Move-Item
+Alias           mount -> New-PSDrive
+Alias           move -> Move-Item
+Alias           mp -> Move-ItemProperty
+Alias           mv -> Move-Item
+Alias           nal -> New-Alias
+Alias           ndr -> New-PSDrive
+Alias           ni -> New-Item
+Alias           nmo -> New-Module
+Alias           npssc -> New-PSSessionConfigurationFile
+Alias           nsn -> New-PSSession
+Alias           nv -> New-Variable
+Alias           ogv -> Out-GridView
+Alias           oh -> Out-Host
+Alias           popd -> Pop-Location
+Alias           ps -> Get-Process
+Alias           psedit -> Open-EditorFile                          0.2.0      PowerShellEditorServices.Commands
+Alias           pushd -> Push-Location
+Alias           pwd -> Get-Location
+Alias           r -> Invoke-History
+Alias           rbp -> Remove-PSBreakpoint
+Alias           rcjb -> Receive-Job
+Alias           rcsn -> Receive-PSSession
+Alias           rd -> Remove-Item
+Alias           rdr -> Remove-PSDrive
+Alias           ren -> Rename-Item
+Alias           ri -> Remove-Item
+Alias           rjb -> Remove-Job
+Alias           rm -> Remove-Item
+Alias           rmdir -> Remove-Item
+Alias           rmo -> Remove-Module
+Alias           rni -> Rename-Item
+Alias           rnp -> Rename-ItemProperty
+Alias           rp -> Remove-ItemProperty
+Alias           rsn -> Remove-PSSession
+Alias           rsnp -> Remove-PSSnapin
+Alias           rujb -> Resume-Job
+Alias           rv -> Remove-Variable
+Alias           rvpa -> Resolve-Path
+Alias           rwmi -> Remove-WmiObject
+Alias           sajb -> Start-Job
+Alias           sal -> Set-Alias
+Alias           saps -> Start-Process
+Alias           sasv -> Start-Service
+Alias           sbp -> Set-PSBreakpoint
+Alias           sc -> Set-Content
+Alias           scb -> Set-Clipboard                               3.1.0.0    Microsoft.PowerShell.Management
+Alias           select -> Select-Object
+Alias           set -> Set-Variable
+Alias           shcm -> Show-Command
+Alias           si -> Set-Item
+Alias           sl -> Set-Location
+Alias           sleep -> Start-Sleep
+Alias           sls -> Select-String
+Alias           sort -> Sort-Object
+Alias           sp -> Set-ItemProperty
+Alias           spjb -> Stop-Job
+Alias           spps -> Stop-Process
+Alias           spsv -> Stop-Service
+Alias           start -> Start-Process
+Alias           stz -> Set-TimeZone                                3.1.0.0    Microsoft.PowerShell.Management
+Alias           sujb -> Suspend-Job
+Alias           sv -> Set-Variable
+Alias           swmi -> Set-WmiInstance
+Alias           tee -> Tee-Object
+Alias           trcm -> Trace-Command
+Alias           type -> Get-Content
+Alias           wget -> Invoke-WebRequest
+Alias           where -> Where-Object
+Alias           wjb -> Wait-Job
+Alias           write -> Write-Output
+
+
+(venv) CommandInvocation(Get-Command): "Get-Command"
+>> ParameterBinding(Get-Command): name="ListImported"; value="True"
+>> ParameterBinding(Get-Command): name="CommandType"; value="Alias"
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           % -> ForEach-Object
+Alias           ? -> Where-Object
+Alias           ac -> Add-Content
+Alias           asnp -> Add-PSSnapin
+Alias           cat -> Get-Content
+Alias           cd -> Set-Location
+Alias           CFS -> ConvertFrom-String                          3.1.0.0    Microsoft.PowerShell.Utility
+Alias           chdir -> Set-Location
+Alias           clc -> Clear-Content
+Alias           clear -> Clear-Host
+Alias           clhy -> Clear-History
+Alias           cli -> Clear-Item
+Alias           clp -> Clear-ItemProperty
+Alias           cls -> Clear-Host
+Alias           clv -> Clear-Variable
+Alias           cnsn -> Connect-PSSession
+Alias           compare -> Compare-Object
+Alias           copy -> Copy-Item
+Alias           cp -> Copy-Item
+Alias           cpi -> Copy-Item
+Alias           cpp -> Copy-ItemProperty
+Alias           curl -> Invoke-WebRequest
+Alias           cvpa -> Convert-Path
+Alias           dbp -> Disable-PSBreakpoint
+Alias           del -> Remove-Item
+Alias           diff -> Compare-Object
+Alias           dir -> Get-ChildItem
+Alias           dnsn -> Disconnect-PSSession
+Alias           ebp -> Enable-PSBreakpoint
+Alias           echo -> Write-Output
+Alias           epal -> Export-Alias
+Alias           epcsv -> Export-Csv
+Alias           epsn -> Export-PSSession
+Alias           erase -> Remove-Item
+Alias           etsn -> Enter-PSSession
+Alias           exsn -> Exit-PSSession
+Alias           fc -> Format-Custom
+Alias           fhx -> Format-Hex                                  3.1.0.0    Microsoft.PowerShell.Utility
+Alias           fl -> Format-List
+Alias           foreach -> ForEach-Object
+Alias           ft -> Format-Table
+Alias           fw -> Format-Wide
+Alias           gal -> Get-Alias
+Alias           gbp -> Get-PSBreakpoint
+Alias           gc -> Get-Content
+Alias           gcb -> Get-Clipboard                               3.1.0.0    Microsoft.PowerShell.Management
+Alias           gci -> Get-ChildItem
+Alias           gcm -> Get-Command
+Alias           gcs -> Get-PSCallStack
+Alias           gdr -> Get-PSDrive
+Alias           ghy -> Get-History
+Alias           gi -> Get-Item
+Alias           gin -> Get-ComputerInfo                            3.1.0.0    Microsoft.PowerShell.Management
+Alias           gjb -> Get-Job
+Alias           gl -> Get-Location
+Alias           gm -> Get-Member
+Alias           gmo -> Get-Module
+Alias           gp -> Get-ItemProperty
+Alias           gps -> Get-Process
+Alias           gpv -> Get-ItemPropertyValue
+Alias           group -> Group-Object
+Alias           gsn -> Get-PSSession
+Alias           gsnp -> Get-PSSnapin
+Alias           gsv -> Get-Service
+Alias           gtz -> Get-TimeZone                                3.1.0.0    Microsoft.PowerShell.Management
+Alias           gu -> Get-Unique
+Alias           gv -> Get-Variable
+Alias           gwmi -> Get-WmiObject
+Alias           h -> Get-History
+Alias           history -> Get-History
+Alias           icm -> Invoke-Command
+Alias           iex -> Invoke-Expression
+Alias           ihy -> Invoke-History
+Alias           ii -> Invoke-Item
+Alias           ipal -> Import-Alias
+Alias           ipcsv -> Import-Csv
+Alias           ipmo -> Import-Module
+Alias           ipsn -> Import-PSSession
+Alias           irm -> Invoke-RestMethod
+Alias           ise -> powershell_ise.exe
+Alias           iwmi -> Invoke-WmiMethod
+Alias           iwr -> Invoke-WebRequest
+Alias           kill -> Stop-Process
+Alias           lp -> Out-Printer
+Alias           ls -> Get-ChildItem
+Alias           man -> help
+Alias           md -> mkdir
+Alias           measure -> Measure-Object
+Alias           mi -> Move-Item
+Alias           mount -> New-PSDrive
+Alias           move -> Move-Item
+Alias           mp -> Move-ItemProperty
+Alias           mv -> Move-Item
+Alias           nal -> New-Alias
+Alias           ndr -> New-PSDrive
+Alias           ni -> New-Item
+Alias           nmo -> New-Module
+Alias           npssc -> New-PSSessionConfigurationFile
+Alias           nsn -> New-PSSession
+Alias           nv -> New-Variable
+Alias           ogv -> Out-GridView
+Alias           oh -> Out-Host
+Alias           popd -> Pop-Location
+Alias           ps -> Get-Process
+Alias           psedit -> Open-EditorFile                          0.2.0      PowerShellEditorServices.Commands
+Alias           pushd -> Push-Location
+Alias           pwd -> Get-Location
+Alias           r -> Invoke-History
+Alias           rbp -> Remove-PSBreakpoint
+Alias           rcjb -> Receive-Job
+Alias           rcsn -> Receive-PSSession
+Alias           rd -> Remove-Item
+Alias           rdr -> Remove-PSDrive
+Alias           ren -> Rename-Item
+Alias           ri -> Remove-Item
+Alias           rjb -> Remove-Job
+Alias           rm -> Remove-Item
+Alias           rmdir -> Remove-Item
+Alias           rmo -> Remove-Module
+Alias           rni -> Rename-Item
+Alias           rnp -> Rename-ItemProperty
+Alias           rp -> Remove-ItemProperty
+Alias           rsn -> Remove-PSSession
+Alias           rsnp -> Remove-PSSnapin
+Alias           rujb -> Resume-Job
+Alias           rv -> Remove-Variable
+Alias           rvpa -> Resolve-Path
+Alias           rwmi -> Remove-WmiObject
+Alias           sajb -> Start-Job
+Alias           sal -> Set-Alias
+Alias           saps -> Start-Process
+Alias           sasv -> Start-Service
+Alias           sbp -> Set-PSBreakpoint
+Alias           sc -> Set-Content
+Alias           scb -> Set-Clipboard                               3.1.0.0    Microsoft.PowerShell.Management
+Alias           select -> Select-Object
+Alias           set -> Set-Variable
+Alias           shcm -> Show-Command
+Alias           si -> Set-Item
+Alias           sl -> Set-Location
+Alias           sleep -> Start-Sleep
+Alias           sls -> Select-String
+Alias           sort -> Sort-Object
+Alias           sp -> Set-ItemProperty
+Alias           spjb -> Stop-Job
+Alias           spps -> Stop-Process
+Alias           spsv -> Stop-Service
+Alias           start -> Start-Process
+Alias           stz -> Set-TimeZone                                3.1.0.0    Microsoft.PowerShell.Management
+Alias           sujb -> Suspend-Job
+Alias           sv -> Set-Variable
+Alias           swmi -> Set-WmiInstance
+Alias           tee -> Tee-Object
+Alias           trcm -> Trace-Command
+Alias           type -> Get-Content
+Alias           wget -> Invoke-WebRequest
+Alias           where -> Where-Object
+Alias           wjb -> Wait-Job
+Alias           write -> Write-Output
+
+
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) clear
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager> ]633;B
+(venv) CommandInvocation(Get-PSBreakpoint): "Get-PSBreakpoint"
+>> CommandInvocation(Remove-PSBreakpoint): "Remove-PSBreakpoint"
+(venv) CommandInvocation(Get-PSBreakpoint): "Get-PSBreakpoint"
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager> ]633;B
+(venv) . 'C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1'
+Transcript started, output file is deploy_bluetooth_manager.log
+Deployment started at 04/15/2024 07:30:39
+Preparing to deploy the BluetoothManager package...
+Checking for required system tools...
+Setting up the virtual environment...
++ python -m venv venv
+Error: [Errno 13] Permission denied: 'C:\\Users\\antho\\OneDrive\\Desktop\\HTDA\\Bluetooth_manager\\venv\\Scripts\\python.exe'
+(venv) TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+>> TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+>> TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+Command failed with exit code 1: python -m venv venv
+Command failed with exit code 1: python -m venv venv
+At C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1:14 char:9
++         throw "Command failed with exit code ${LASTEXITCODE}: $comman ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Command failed ...on -m venv venv:String) [], RuntimeException
+    + FullyQualifiedErrorId : Command failed with exit code 1: python -m venv venv
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) clear
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) . 'C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1'
+Transcript started, output file is deploy_bluetooth_manager.log
+Deployment started at 04/15/2024 07:31:38
+Preparing to deploy the BluetoothManager package...
+Checking for required system tools...
+Setting up the virtual environment...
++ python -m venv venv
+
+Installing wheel and wxPython within the virtual environment...
++ pip install wheel
+
+[notice] A new release of pip is available: 23.2.1 -> 24.0
+[notice] To update, run: python.exe -m pip install --upgrade pip
++ pip install wxPython
+
+Installing the BluetoothManager package from the Bluetooth_manager directory...
++ pip install .
+
+(venv) TerminatingError(): "Command failed with exit code 1: pip install ."
+>> TerminatingError(): "Command failed with exit code 1: pip install ."
+>> TerminatingError(): "Command failed with exit code 1: pip install ."
+Command failed with exit code 1: pip install .
+Command failed with exit code 1: pip install .
+At C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1:14 char:9
++         throw "Command failed with exit code ${LASTEXITCODE}: $comman ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Command failed ...: pip install .:String) [], RuntimeException
+    + FullyQualifiedErrorId : Command failed with exit code 1: pip install .
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) clear
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) . 'C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1'
+Transcript started, output file is deploy_bluetooth_manager.log
+Deployment started at 04/15/2024 07:38:04
+Preparing to deploy the BluetoothManager package...
+Checking for required system tools...
+Setting up the virtual environment...
++ python -m venv venv
+
+Installing wheel and wxPython within the virtual environment...
++ pip install wheel
+
+[notice] A new release of pip is available: 23.2.1 -> 24.0
+[notice] To update, run: python.exe -m pip install --upgrade pip
++ pip install wxPython
+
+Installing the BluetoothManager package from the root directory...
++ pip install .
+
+(venv) TerminatingError(): "Command failed with exit code 1: pip install ."
+>> TerminatingError(): "Command failed with exit code 1: pip install ."
+>> TerminatingError(): "Command failed with exit code 1: pip install ."
+Command failed with exit code 1: pip install .
+Command failed with exit code 1: pip install .
+At C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1:14 char:9
++         throw "Command failed with exit code ${LASTEXITCODE}: $comman ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Command failed ...: pip install .:String) [], RuntimeException
+    + FullyQualifiedErrorId : Command failed with exit code 1: pip install .
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) clear
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Set strict error handling
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) $ErrorActionPreference = "Stop"
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Setup logging
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) $logFile = "deploy_bluetooth_manager.log"
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Start-Transcript -Path $logFile -Append
+Transcript started, output file is deploy_bluetooth_manager.log
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Output "Deployment started at $(Get-Date)"
+Deployment started at 04/15/2024 07:45:52
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) function ExecCmd {
+    param([string]$command)
+    Write-Host "+ $command" -ForegroundColor Cyan
+    & powershell -Command $command
+    if ($LASTEXITCODE -ne 0) {
+        throw "Command failed with exit code ${LASTEXITCODE}: $command"
+    }
+}
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) function CommandExists {
+    param([string]$command)
+    $null = Get-Command $command -ErrorAction SilentlyContinue
+    return $?
+}
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Preparing to deploy the BluetoothManager package..."
+Preparing to deploy the BluetoothManager package...
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Ensure necessary tools and libraries are installed
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Checking for required system tools..."
+Checking for required system tools...
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) if (-not (CommandExists "python")) {
+    Write-Host "Python is not installed, installing it..."
+    Start-Process "https://www.python.org/ftp/python/3.9.0/python-3.9.0-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
+}
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) if (-not (CommandExists "pip")) {
+    Write-Host "pip is not installed, installing it..."
+    ExecCmd "python -m ensurepip --upgrade"
+}
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Setup and activate the virtual environment
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Setting up the virtual environment..."
+Setting up the virtual environment...
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) ExecCmd "python -m venv venv"
++ python -m venv venv
+
+(venv) TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+>> TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+Command failed with exit code 1: python -m venv venv
+Command failed with exit code 1: python -m venv venv
+At line:6 char:9
++         throw "Command failed with exit code ${LASTEXITCODE}: $comman ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Command failed ...on -m venv venv:String) [], RuntimeException
+    + FullyQualifiedErrorId : Command failed with exit code 1: python -m venv venv
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) . .\venv\Scripts\Activate.ps1
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Ensure wheel is installed within the virtual environment for building packages
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Installing wheel within the virtual environment..."
+Installing wheel within the virtual environment...
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) ExecCmd "pip install wheel"
++ pip install wheel
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Install the package using setup.py located at the root
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Installing the BluetoothManager package from the root directory..."
+Installing the BluetoothManager package from the root directory...
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) ExecCmd "pip install ."
++ pip install .
+
+(venv) TerminatingError(): "Command failed with exit code 1: pip install ."
+>> TerminatingError(): "Command failed with exit code 1: pip install ."
+Command failed with exit code 1: pip install .
+Command failed with exit code 1: pip install .
+At line:6 char:9
++         throw "Command failed with exit code ${LASTEXITCODE}: $comman ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Command failed ...: pip install .:String) [], RuntimeException
+    + FullyQualifiedErrorId : Command failed with exit code 1: pip install .
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Verify the installation by attempting to import the package
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Verifying the BluetoothManager installation..."
+Verifying the BluetoothManager installation...
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) $verify = { python -c "from Bluetooth_manager.manager import BluetoothManager; print('Import successful')" }
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Invoke-Command -ScriptBlock $verify
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) if (-not $?) {
+    Write-Host "BluetoothManager import failed. Check logs for details."
+    exit 1
+}
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "BluetoothManager installation verified successfully."
+BluetoothManager installation verified successfully.
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Deployment completed successfully."
+Deployment completed successfully.
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Stop-Transcript
+Transcript stopped, output file is C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager\deploy_bluetooth_manager.log
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) clear
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) CommandInvocation(Get-PSBreakpoint): "Get-PSBreakpoint"
+>> CommandInvocation(Remove-PSBreakpoint): "Remove-PSBreakpoint"
+(venv) CommandInvocation(Get-PSBreakpoint): "Get-PSBreakpoint"
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) . 'C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1'
+Transcript started, output file is deploy_bluetooth_manager.log
+Deployment started at 04/15/2024 07:47:32
+Preparing to deploy the BluetoothManager package...
+Checking for required system tools...
+Setting up the virtual environment...
++ python -m venv venv
+Error: [Errno 13] Permission denied: 'C:\\Users\\antho\\OneDrive\\Desktop\\HTDA\\Bluetooth_manager\\Bluetooth_manager\\venv\\Scripts\\python.exe'
+(venv) TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+>> TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+>> TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+Command failed with exit code 1: python -m venv venv
+Command failed with exit code 1: python -m venv venv
+At C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1:14 char:9
++         throw "Command failed with exit code ${LASTEXITCODE}: $comman ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Command failed ...on -m venv venv:String) [], RuntimeException
+    + FullyQualifiedErrorId : Command failed with exit code 1: python -m venv venv
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) clear
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) CommandInvocation(Get-PSBreakpoint): "Get-PSBreakpoint"
+>> CommandInvocation(Remove-PSBreakpoint): "Remove-PSBreakpoint"
+(venv) CommandInvocation(Get-PSBreakpoint): "Get-PSBreakpoint"
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) . 'C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1'
+Transcript started, output file is deploy_bluetooth_manager.log
+Deployment started at 04/15/2024 07:48:22
+Preparing to deploy the BluetoothManager package...
+Checking for required system tools...
+Setting up the virtual environment...
++ python -m venv venv
+Error: [Errno 13] Permission denied: 'C:\\Users\\antho\\OneDrive\\Desktop\\HTDA\\Bluetooth_manager\\Bluetooth_manager\\venv\\Scripts\\python.exe'
+(venv) TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+>> TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+>> TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+Command failed with exit code 1: python -m venv venv
+Command failed with exit code 1: python -m venv venv
+At C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1:14 char:9
++         throw "Command failed with exit code ${LASTEXITCODE}: $comman ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Command failed ...on -m venv venv:String) [], RuntimeException
+    + FullyQualifiedErrorId : Command failed with exit code 1: python -m venv venv
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+**********************
+Windows PowerShell transcript start
+Start time: 20240415074920
+Username: LAPTOP-K8ELH9SS\antho
+RunAs User: LAPTOP-K8ELH9SS\antho
+Configuration Name: 
+Machine: LAPTOP-K8ELH9SS (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Import-Module 'c:\Users\antho\.vscode\extensions\ms-vscode.powershell-2024.2.0\modules\PowerShellEditorServices\PowerShellEditorServices.psd1'; Start-EditorServices -HostName 'Visual Studio Code Host' -HostProfileId 'Microsoft.VSCode' -HostVersion '2024.2.0' -BundledModulesPath 'c:\Users\antho\.vscode\extensions\ms-vscode.powershell-2024.2.0\modules' -EnableConsoleRepl -StartupBanner "PowerShell Extension v2024.2.0
+Copyright (c) Microsoft Corporation.
+
+https://aka.ms/vscode-powershell
+Type 'help' to get help.
+" -LogLevel 'Normal' -LogPath 'c:\Users\antho\AppData\Roaming\Code\User\globalStorage\ms-vscode.powershell\logs\1713179032-50349e2c-f989-4a40-883d-abd046f7549a1713178957216' -SessionDetailsPath 'c:\Users\antho\AppData\Roaming\Code\User\globalStorage\ms-vscode.powershell\sessions\PSES-VSCode-15592-301629.json' -FeatureFlags @() 
+Process ID: 11400
+PSVersion: 5.1.19041.4291
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.4291
+BuildVersion: 10.0.19041.4291
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is deploy_bluetooth_manager.log
+Deployment started at 04/15/2024 07:49:20
+Preparing to deploy the BluetoothManager package...
+Checking for required system tools...
+Setting up the virtual environment...
++ python -m venv venv
+
+Installing wheel within the virtual environment...
++ pip install wheel
+
+Installing the BluetoothManager package from the root directory...
++ pip install .
+
+Verifying the BluetoothManager installation...
+
+BluetoothManager installation verified successfully.
+Deployment completed successfully.
+**********************
+Windows PowerShell transcript end
+End time: 20240415075011
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20240415075615
+Username: LAPTOP-K8ELH9SS\antho
+RunAs User: LAPTOP-K8ELH9SS\antho
+Configuration Name: 
+Machine: LAPTOP-K8ELH9SS (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Import-Module 'c:\Users\antho\.vscode\extensions\ms-vscode.powershell-2024.2.0\modules\PowerShellEditorServices\PowerShellEditorServices.psd1'; Start-EditorServices -HostName 'Visual Studio Code Host' -HostProfileId 'Microsoft.VSCode' -HostVersion '2024.2.0' -BundledModulesPath 'c:\Users\antho\.vscode\extensions\ms-vscode.powershell-2024.2.0\modules' -EnableConsoleRepl -StartupBanner "PowerShell Extension v2024.2.0
+Copyright (c) Microsoft Corporation.
+
+https://aka.ms/vscode-powershell
+Type 'help' to get help.
+" -LogLevel 'Normal' -LogPath 'c:\Users\antho\AppData\Roaming\Code\User\globalStorage\ms-vscode.powershell\logs\1713179032-50349e2c-f989-4a40-883d-abd046f7549a1713178957216' -SessionDetailsPath 'c:\Users\antho\AppData\Roaming\Code\User\globalStorage\ms-vscode.powershell\sessions\PSES-VSCode-15592-897010.json' -FeatureFlags @() 
+Process ID: 19556
+PSVersion: 5.1.19041.4291
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.4291
+BuildVersion: 10.0.19041.4291
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is deploy_bluetooth_manager.log
+Deployment started at 04/15/2024 07:56:15
+Preparing to deploy the BluetoothManager package...
+Checking for required system tools...
+Setting up the virtual environment...
++ python -m venv venv
+
+Installing wheel within the virtual environment...
++ pip install wheel
+
+Installing the BluetoothManager package from the root directory...
++ pip install .
+
+Verifying the BluetoothManager installation...
+
+BluetoothManager installation verified successfully.
+Deployment completed successfully.
+**********************
+Windows PowerShell transcript end
+End time: 20240415075721
+**********************

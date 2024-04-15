@@ -1,0 +1,86 @@
+Metadata-Version: 2.1
+Name: bluetooth_manager
+Version: 0.1.0
+Summary: A package to manage Bluetooth devices using Windows PowerShell commands
+Home-page: https://github.com/HermiTech-LLC/Bluetooth_manager
+Author: Ant O, Greene
+Author-email: anthonygreene2007@gmail.com
+License: AGPLv3
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: wheel
+Requires-Dist: PyYAML
+
+# Bluetooth Manager Package
+_______________________________________
+![Bluetooth Manager](https://github.com/LoQiseaking69/BT_manager/blob/main/BTmlogo.PNG)
+
+## Overview
+The `bluetooth_manager` package is designed for programmable Bluetooth device management via `bluetoothctl` on compatible systems. It provides a powerful interface for integrating Bluetooth capabilities into larger applications or for standalone usage, ensuring high-level control and efficient management of Bluetooth devices.
+
+## Features
+- **Device Scanning**: Rapid detection of all nearby Bluetooth devices in discoverable mode.
+- **Concurrent Connections**: Supports managing multiple connections simultaneously with a configurable cap to balance system load.
+- **Error Handling**: Robust custom exceptions and detailed logging facilitate troubleshooting and enhance operational visibility.
+
+## Installation
+To install `bluetooth_manager`, execute the provided `Build.sh` shell script, which streamlines the setup process. This script ensures that all prerequisites are met and installs the package within a virtual environment.
+
+1. Ensure the script is executable:
+    ```bash
+    chmod +x Build.sh
+    ```
+2. Run the script:
+    ```bash
+    ./Build.sh
+    ```
+______________________________________
+![screenshot](https://github.com/LoQiseaking69/BT_manager/blob/main/IMG_9452.jpeg)
+______________________________________
+The script will check for Python 3.6+, install the necessary dependencies, and set up the package. Make sure to have `bluetoothctl` installed on your Linux system for the package to function correctly.
+
+## Dependencies
+- Python 3.6 or later.
+- Standard Python libraries including `subprocess`, `threading`, `logging`, and `re` for regex processing.
+- A system-wide installation of `bluetoothctl`.
+
+## Usage
+Incorporate `bluetooth_manager` in your Python scripts as follows:
+
+1. Import `BluetoothManager`:
+    ```python
+    from bluetooth_manager.manager import BluetoothManager
+    ```
+
+2. Create an instance of `BluetoothManager`:
+    ```python
+    bluetooth_manager = BluetoothManager()
+    ```
+
+3. Initiate device connection management:
+    ```python
+    bluetooth_manager.manage_connections()
+    ```
+
+## Example
+Here's a straightforward example of initializing the manager and starting the device connection process:
+
+```python
+from bluetooth_manager.manager import BluetoothManager
+
+# Initialize the manager with a limit of four concurrent connections
+bluetooth_manager = BluetoothManager(max_connections=4)
+
+# Begin the connection management process
+bluetooth_manager.manage_connections()
+```

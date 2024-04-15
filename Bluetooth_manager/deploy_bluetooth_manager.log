@@ -1,0 +1,307 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20240415073804
+Username: LAPTOP-K8ELH9SS\antho
+RunAs User: LAPTOP-K8ELH9SS\antho
+Configuration Name: 
+Machine: LAPTOP-K8ELH9SS (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Import-Module 'c:\Users\antho\.vscode\extensions\ms-vscode.powershell-2024.2.0\modules\PowerShellEditorServices\PowerShellEditorServices.psd1'; Start-EditorServices -HostName 'Visual Studio Code Host' -HostProfileId 'Microsoft.VSCode' -HostVersion '2024.2.0' -BundledModulesPath 'c:\Users\antho\.vscode\extensions\ms-vscode.powershell-2024.2.0\modules' -EnableConsoleRepl -StartupBanner "PowerShell Extension v2024.2.0
+Copyright (c) Microsoft Corporation.
+
+https://aka.ms/vscode-powershell
+Type 'help' to get help.
+" -LogLevel 'Normal' -LogPath 'c:\Users\antho\AppData\Roaming\Code\User\globalStorage\ms-vscode.powershell\logs\1713179032-50349e2c-f989-4a40-883d-abd046f7549a1713178957216' -SessionDetailsPath 'c:\Users\antho\AppData\Roaming\Code\User\globalStorage\ms-vscode.powershell\sessions\PSES-VSCode-15592-260078.json' -FeatureFlags @() 
+Process ID: 11736
+PSVersion: 5.1.19041.4291
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.4291
+BuildVersion: 10.0.19041.4291
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is deploy_bluetooth_manager.log
+Deployment started at 04/15/2024 07:38:04
+Preparing to deploy the BluetoothManager package...
+Checking for required system tools...
+Setting up the virtual environment...
++ python -m venv venv
+
+Installing wheel and wxPython within the virtual environment...
++ pip install wheel
+
+[notice] A new release of pip is available: 23.2.1 -> 24.0
+[notice] To update, run: python.exe -m pip install --upgrade pip
++ pip install wxPython
+
+Installing the BluetoothManager package from the root directory...
++ pip install .
+
+(venv) TerminatingError(): "Command failed with exit code 1: pip install ."
+>> TerminatingError(): "Command failed with exit code 1: pip install ."
+>> TerminatingError(): "Command failed with exit code 1: pip install ."
+Command failed with exit code 1: pip install .
+Command failed with exit code 1: pip install .
+At C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1:14 char:9
++         throw "Command failed with exit code ${LASTEXITCODE}: $comman ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Command failed ...: pip install .:String) [], RuntimeException
+    + FullyQualifiedErrorId : Command failed with exit code 1: pip install .
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) clear
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Set strict error handling
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) $ErrorActionPreference = "Stop"
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Setup logging
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) $logFile = "deploy_bluetooth_manager.log"
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Start-Transcript -Path $logFile -Append
+Transcript started, output file is deploy_bluetooth_manager.log
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Output "Deployment started at $(Get-Date)"
+Deployment started at 04/15/2024 07:45:52
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) function ExecCmd {
+    param([string]$command)
+    Write-Host "+ $command" -ForegroundColor Cyan
+    & powershell -Command $command
+    if ($LASTEXITCODE -ne 0) {
+        throw "Command failed with exit code ${LASTEXITCODE}: $command"
+    }
+}
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) function CommandExists {
+    param([string]$command)
+    $null = Get-Command $command -ErrorAction SilentlyContinue
+    return $?
+}
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Preparing to deploy the BluetoothManager package..."
+Preparing to deploy the BluetoothManager package...
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Ensure necessary tools and libraries are installed
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Checking for required system tools..."
+Checking for required system tools...
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) if (-not (CommandExists "python")) {
+    Write-Host "Python is not installed, installing it..."
+    Start-Process "https://www.python.org/ftp/python/3.9.0/python-3.9.0-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
+}
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) if (-not (CommandExists "pip")) {
+    Write-Host "pip is not installed, installing it..."
+    ExecCmd "python -m ensurepip --upgrade"
+}
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Setup and activate the virtual environment
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Setting up the virtual environment..."
+Setting up the virtual environment...
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) ExecCmd "python -m venv venv"
++ python -m venv venv
+
+(venv) TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+>> TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+Command failed with exit code 1: python -m venv venv
+Command failed with exit code 1: python -m venv venv
+At line:6 char:9
++         throw "Command failed with exit code ${LASTEXITCODE}: $comman ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Command failed ...on -m venv venv:String) [], RuntimeException
+    + FullyQualifiedErrorId : Command failed with exit code 1: python -m venv venv
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) . .\venv\Scripts\Activate.ps1
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Ensure wheel is installed within the virtual environment for building packages
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Installing wheel within the virtual environment..."
+Installing wheel within the virtual environment...
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) ExecCmd "pip install wheel"
++ pip install wheel
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Install the package using setup.py located at the root
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Installing the BluetoothManager package from the root directory..."
+Installing the BluetoothManager package from the root directory...
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) ExecCmd "pip install ."
++ pip install .
+
+(venv) TerminatingError(): "Command failed with exit code 1: pip install ."
+>> TerminatingError(): "Command failed with exit code 1: pip install ."
+Command failed with exit code 1: pip install .
+Command failed with exit code 1: pip install .
+At line:6 char:9
++         throw "Command failed with exit code ${LASTEXITCODE}: $comman ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Command failed ...: pip install .:String) [], RuntimeException
+    + FullyQualifiedErrorId : Command failed with exit code 1: pip install .
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) # Verify the installation by attempting to import the package
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Verifying the BluetoothManager installation..."
+Verifying the BluetoothManager installation...
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) $verify = { python -c "from Bluetooth_manager.manager import BluetoothManager; print('Import successful')" }
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Invoke-Command -ScriptBlock $verify
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) if (-not $?) {
+    Write-Host "BluetoothManager import failed. Check logs for details."
+    exit 1
+}
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "BluetoothManager installation verified successfully."
+BluetoothManager installation verified successfully.
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Write-Host "Deployment completed successfully."
+Deployment completed successfully.
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) Stop-Transcript
+Transcript stopped, output file is C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager\deploy_bluetooth_manager.log
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) clear
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) CommandInvocation(Get-PSBreakpoint): "Get-PSBreakpoint"
+>> CommandInvocation(Remove-PSBreakpoint): "Remove-PSBreakpoint"
+(venv) CommandInvocation(Get-PSBreakpoint): "Get-PSBreakpoint"
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) . 'C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1'
+Transcript started, output file is deploy_bluetooth_manager.log
+Deployment started at 04/15/2024 07:47:32
+Preparing to deploy the BluetoothManager package...
+Checking for required system tools...
+Setting up the virtual environment...
++ python -m venv venv
+Error: [Errno 13] Permission denied: 'C:\\Users\\antho\\OneDrive\\Desktop\\HTDA\\Bluetooth_manager\\Bluetooth_manager\\venv\\Scripts\\python.exe'
+(venv) TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+>> TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+>> TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+Command failed with exit code 1: python -m venv venv
+Command failed with exit code 1: python -m venv venv
+At C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1:14 char:9
++         throw "Command failed with exit code ${LASTEXITCODE}: $comman ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Command failed ...on -m venv venv:String) [], RuntimeException
+    + FullyQualifiedErrorId : Command failed with exit code 1: python -m venv venv
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) $global:__psEditorServices_userInput = $args[0]
+(venv) $global:__psEditorServices_userInput = ""
+(venv) clear
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) CommandInvocation(Get-PSBreakpoint): "Get-PSBreakpoint"
+>> CommandInvocation(Remove-PSBreakpoint): "Remove-PSBreakpoint"
+(venv) CommandInvocation(Get-PSBreakpoint): "Get-PSBreakpoint"
+]633;D]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B
+(venv) . 'C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1'
+Transcript started, output file is deploy_bluetooth_manager.log
+Deployment started at 04/15/2024 07:48:22
+Preparing to deploy the BluetoothManager package...
+Checking for required system tools...
+Setting up the virtual environment...
++ python -m venv venv
+Error: [Errno 13] Permission denied: 'C:\\Users\\antho\\OneDrive\\Desktop\\HTDA\\Bluetooth_manager\\Bluetooth_manager\\venv\\Scripts\\python.exe'
+(venv) TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+>> TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+>> TerminatingError(): "Command failed with exit code 1: python -m venv venv"
+Command failed with exit code 1: python -m venv venv
+Command failed with exit code 1: python -m venv venv
+At C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\BluetoothManagerSetup.ps1:14 char:9
++         throw "Command failed with exit code ${LASTEXITCODE}: $comman ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Command failed ...on -m venv venv:String) [], RuntimeException
+    + FullyQualifiedErrorId : Command failed with exit code 1: python -m venv venv
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cantho\x5cOneDrive\x5cDesktop\x5cHTDA\x5cBluetooth_manager\x5cBluetooth_managerPS C:\Users\antho\OneDrive\Desktop\HTDA\Bluetooth_manager\Bluetooth_manager> ]633;B

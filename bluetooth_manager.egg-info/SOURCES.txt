@@ -1,0 +1,9 @@
+README.md
+setup.py
+Bluetooth_manager/__init__.py
+Bluetooth_manager/manager.py
+bluetooth_manager.egg-info/PKG-INFO
+bluetooth_manager.egg-info/SOURCES.txt
+bluetooth_manager.egg-info/dependency_links.txt
+bluetooth_manager.egg-info/requires.txt
+bluetooth_manager.egg-info/top_level.txt

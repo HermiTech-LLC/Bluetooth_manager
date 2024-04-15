@@ -11,7 +11,7 @@ function ExecCmd {
     Write-Host "+ $command" -ForegroundColor Cyan
     & powershell -Command $command
     if ($LASTEXITCODE -ne 0) {
-        throw "Command failed with exit code $LASTEXITCODE: $command"
+        throw "Command failed with exit code ${LASTEXITCODE}: $command"
     }
 }
 
@@ -36,43 +36,28 @@ if (-not (CommandExists "pip")) {
     ExecCmd "python -m ensurepip --upgrade"
 }
 
-# Ensure wheel and wxPython are installed for building packages
-ExecCmd "pip install wheel wxPython"
-
-# Check Bluetooth support service status and start if not running
-$bluetoothService = Get-Service -Name bthserv -ErrorAction SilentlyContinue
-if ($bluetoothService -eq $null) {
-    Write-Host "Bluetooth service is not available on this system."
-} elseif ($bluetoothService.Status -ne 'Running') {
-    Write-Host "Starting Bluetooth support service..."
-    Start-Service bthserv
-} else {
-    Write-Host "Bluetooth support service is already running."
-}
-
 # Setup and activate the virtual environment
 Write-Host "Setting up the virtual environment..."
 ExecCmd "python -m venv venv"
 . .\venv\Scripts\Activate.ps1
+
+# Ensure wheel is installed within the virtual environment for building packages
+Write-Host "Installing wheel within the virtual environment..."
+ExecCmd "pip install wheel"
 
 # Install the package using setup.py located at the root
 Write-Host "Installing the BluetoothManager package from the root directory..."
 ExecCmd "pip install ."
 
 # Verify the installation by attempting to import the package
-Write-Host "Verifying the installation..."
-$verify = { python -c "from BluetoothManager.manager import BluetoothManager; print('Import successful')" }
+Write-Host "Verifying the BluetoothManager installation..."
+$verify = { python -c "from Bluetooth_manager.manager import BluetoothManager; print('Import successful')" }
 Invoke-Command -ScriptBlock $verify
-if ($?) {
-    Write-Host "Installation verified successfully."
-} else {
-    Write-Host "Failed to verify the installation. Check logs for details."
+if (-not $?) {
+    Write-Host "BluetoothManager import failed. Check logs for details."
     exit 1
 }
-
-# Run the SynthDash.py application located at the root
-Write-Host "Running the SynthDash.py wxPython dashboard..."
-ExecCmd "python .\SynthDash.py"
+Write-Host "BluetoothManager installation verified successfully."
 
 Write-Host "Deployment completed successfully."
 
