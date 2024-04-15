@@ -1,12 +1,20 @@
 from setuptools import setup, find_packages
 
 # Improved handling of README file for long description
-with open('README.md', 'r', encoding='utf-8') as fh:
-    long_description = fh.read()
+try:
+    with open('README.md', 'r', encoding='utf-8') as fh:
+        long_description = fh.read()
+except FileNotFoundError:
+    long_description = "A detailed description is missing. Please check the README.md file."
+    print("WARNING: README.md file not found.")
 
 # Load requirements from requirements.txt file
-with open('requirements.txt', 'r', encoding='utf-8') as fh:
-    requirements = fh.readlines()
+try:
+    with open('requirements.txt', 'r', encoding='utf-8') as fh:
+        requirements = fh.readlines()
+except FileNotFoundError:
+    requirements = []
+    print("WARNING: requirements.txt file not found. Continuing without installing any dependencies.")
 
 setup(
     name='bluetooth_manager',
@@ -18,7 +26,7 @@ setup(
     author='Ant O, Greene',
     author_email='anthonygreene2007@gmail.com',
     url='https://github.com/LoQiseaking69/BT_manager',
-    install_requires=requirements,
+    install_requires=[req.strip() for req in requirements],
     python_requires='>=3.6',
     classifiers=[
         'Development Status :: 4 - Beta',
