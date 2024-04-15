@@ -25,7 +25,7 @@ setup(
     long_description_content_type='text/markdown',
     author='Ant O, Greene',
     author_email='anthonygreene2007@gmail.com',
-    url='https://github.com/LoQiseaking69/BT_manager',
+    url='https://github.com/HermiTech-LLC/Bluetooth_manager',
     install_requires=[req.strip() for req in requirements],
     python_requires='>=3.6',
     classifiers=[
