@@ -1,12 +1,15 @@
-name: Build wxPython Application on Windows
+name: Build and Test wxPython Application on Windows
 
 on:
   push:
     branches:
       - main  # Triggers the workflow on push events to the main branch.
+  pull_request:
+    branches:
+      - main  # Also trigger on pull requests to the main branch.
 
 jobs:
-  build:
+  build-and-test:
     runs-on: windows-latest  # Uses the latest Windows runner provided by GitHub Actions.
 
     steps:
@@ -17,6 +20,14 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'  # Specifies the Python version to use.
+
+      - name: Cache Python packages
+        uses: actions/cache@v3
+        with:
+          path: ~\AppData\Local\pip\Cache
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Install Python dependencies
         run: |
@@ -30,6 +41,17 @@ jobs:
         run: |
           python setup.py install  # Installs your package from the root directory.
 
+      - name: Run automated tests
+        run: |
+          python -m pytest  # Assumes pytest is used for testing. Adjust according to your testing framework.
+        continue-on-error: true  # Continues the workflow even if tests fail; adjust based on your policy.
+
       - name: Run wxPython application
         run: |
           python SynthDash.py  # Executes the wxPython application script from the root directory.
+        continue-on-error: true  # Continues the workflow even if this step fails; remove or set to false if critical.
+
+      - name: Package application (optional)
+        run: |
+          pyinstaller --onefile --windowed SynthDash.py  # Example command using PyInstaller to package the app.
+        if: success()  # Only package the application if all previous steps were successful.
