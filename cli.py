@@ -16,6 +16,10 @@ def main():
         help='Scan for available Bluetooth devices. Can be used with or without specifying a channel.'
     )
     parser.add_argument(
+        '--connect', type=str,
+        help='Connect to a specific Bluetooth device by MAC address. Requires specifying a channel with --channel.'
+    )
+    parser.add_argument(
         '--disconnect', action='store_true',
         help='Disconnect all devices on a specified channel. Requires specifying a channel with --channel.'
     )
@@ -25,12 +29,12 @@ def main():
     )
     parser.add_argument(
         '--channel', type=int, choices=range(1, 4),
-        help='Specify the channel for Bluetooth operations (1, 2, or 3). Required for --manage, --disconnect, and --list.'
+        help='Specify the channel for Bluetooth operations (1, 2, or 3). Required for --manage, --disconnect, --list, and --connect.'
     )
 
     args = parser.parse_args()
 
-    if not any([args.manage, args.scan, args.disconnect, args.list]):
+    if not any([args.manage, args.scan, args.disconnect, args.list, args.connect]):
         parser.print_help()
         sys.exit(0)
 
@@ -50,6 +54,13 @@ def main():
             print("Scanning for Bluetooth devices has started:")
             for device in devices:
                 print(device)
+
+        if args.connect:
+            if not args.channel:
+                print("Error: --connect requires a channel to be specified.", file=sys.stderr)
+                sys.exit(1)
+            bluetooth_manager.connect_device(args.connect)
+            print(f"Attempting to connect to device {args.connect} on channel {args.channel}.")
 
         if args.disconnect:
             if not args.channel:
