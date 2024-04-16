@@ -36,28 +36,32 @@ Incorporate `bluetooth_manager` in your Python scripts as follows:
 
 1. Import `BluetoothManager`:
     ```python
-    from bluetooth_manager.manager import BluetoothManager
+    from Bluetooth_manager.manager import BluetoothManager
     ```
 
 2. Create an instance of `BluetoothManager`:
     ```python
-    bluetooth_manager = BluetoothManager()
+    Bluetooth_manager = BluetoothManager()
     ```
 
 3. Initiate device connection management:
     ```python
-    bluetooth_manager.manage_connections()
+    Bluetooth_manager.manage_connections()
     ```
 
 ## Example
 Here's a straightforward example of initializing the manager and starting the device connection process:
 
 ```python
-from bluetooth_manager.manager import BluetoothManager
+from Bluetooth_manager.manager import BluetoothManager
 
 # Initialize the manager with a limit of four concurrent connections
 bluetooth_manager = BluetoothManager(max_connections=4)
 
 # Begin the connection management process
-bluetooth_manager.manage_connections()
+Bluetooth_manager.manage_connections()
 ```
+_______________________________________
+*the cli program successfuly imports this package*
+![cli](https://github.com/HermiTech-LLC/Bluetooth_manager/blob/main/IMG_9462.jpeg)
+_______________________________________
